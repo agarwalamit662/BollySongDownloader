@@ -1,0 +1,34 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.1"
+
+    defaultConfig {
+        applicationId "com.support.android.songsdownloader"
+        minSdkVersion 9
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile 'com.android.support:design:23.1.1'
+    compile 'com.android.support:cardview-v7:23.1.1'
+    compile files('libs/jsoup-1.8.3.jar')
+    compile 'com.github.bumptech.glide:glide:3.6.0'
+    compile 'de.hdodenhof:circleimageview:1.3.0'
+    compile 'com.mani:ThinDownloadManager:1.2.0'
+    compile 'org.solovyev.android.views:linear-layout-manager:0.5@aar'
+}
