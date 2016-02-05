@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+        <TextView
+            android:id="@+id/textDwnldSongName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="18dp"
+            android:textColor="#c23df2"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:layout_weight="1"
+            />
+
+        <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/currPrgDownloads"/>
+        
+
+    </LinearLayout>
