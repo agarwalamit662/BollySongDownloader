@@ -8,12 +8,15 @@ import com.thin.downloadmanager.DefaultRetryPolicy;
 import com.thin.downloadmanager.RetryPolicy;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 
 import com.thin.downloadmanager.DownloadStatusListener;
 import com.thin.downloadmanager.ThinDownloadManager;
 
 import java.io.BufferedInputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -77,39 +80,58 @@ public class MyIntentService extends CheckIntentService {
             Log.e("songId ki value hai", String.valueOf(songId));
             Log.e("songId ki value hai", String.valueOf(songId));
             Log.e("songId ki value hai", String.valueOf(songId));
+            Log.e("Message from Activity: ", msgFromActivity);
+            Log.e("Message from Activity: ", msgFromActivity);
+            Log.e("Message from Activity: ", msgFromActivity);
         }
         extraOut = "Download Complete: " +  songName;
 
         int count;
         try {
             if(msgFromActivity != null && songName != null && songId != 0 ) {
+                Log.e("Inif all not null: ", msgFromActivity);
+                Log.e("Inif all not null: ", msgFromActivity);
+
                 URL url1 = new URL(msgFromActivity);
-               // HttpURLConnection urlConnection = (HttpURLConnection) url1.openConnection();
-              //  urlConnection.setRequestMethod("GET");
-              //  urlConnection.setDoOutput(true);
-              //  urlConnection.setChunkedStreamingMode(100);
-              //  urlConnection.connect();
+                HttpURLConnection urlConnection = (HttpURLConnection) url1.openConnection();
+                urlConnection.setRequestMethod("GET");
+                urlConnection.setDoOutput(true);
+                urlConnection.setChunkedStreamingMode(100);
+                urlConnection.connect();
               //  final String contentLengthStr=urlConnection.getHeaderField("content-length");
              //   Log.e("content Lenght Str ",contentLengthStr);
              //   Log.e("content Lenght Str ",contentLengthStr);
              //   Log.e("content Lenght Str ",contentLengthStr);
 
 
-                URLConnection conexion = url1.openConnection();
+               // URLConnection conexion = url1.openConnection();
                 //conexion.setRequestProperty("GET");
                // conexion.setRequestProperty("Accept-Encoding", "identity");
-                conexion.connect();
+               // conexion.connect();
 
-                int lenghtOfFile = conexion.getContentLength();
+                int lenghtOfFile = urlConnection.getContentLength();
+                Log.e("length of file is : ",String.valueOf(lenghtOfFile));
+                Log.e("length of file is : ",String.valueOf(lenghtOfFile));
+                //InputStream input = new BufferedInputStream(urlConnection.getInputStream());
                 InputStream input = new BufferedInputStream(url1.openStream());
-                OutputStream output = new FileOutputStream("/sdcard/SongsDownloader/" + songName + ".mp3");
+                File mydir = new File(Environment.getExternalStorageDirectory() + "/SongsDownloader/");
+                if(!mydir.exists())
+                    mydir.mkdirs();
+                else
+                    Log.d("error", "dir. already exists");
+
+                File file = new File(mydir, songName + ".mp3");
+                OutputStream output = new FileOutputStream(file);
                 byte data[] = new byte[1024];
+                byte d;
+                Log.e("Output is not null : ",output.toString());
                 long total = 0;
-                System.out.println("downloading.............");
+                //System.out.println("downloading.............");
 
                 while ((count = input.read(data)) != -1) {
                     if (flag) {
                         total += count;
+                        //Log.e("Total value : ",String.valueOf(total));
                         Intent intentUpdate = new Intent();
                         intentUpdate.setAction(ACTION_MyUpdate);
                         intentUpdate.addCategory(Intent.CATEGORY_DEFAULT);
