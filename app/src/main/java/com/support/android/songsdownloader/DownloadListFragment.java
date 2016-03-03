@@ -99,6 +99,10 @@ public class DownloadListFragment extends Fragment {
 
         f.mkdirs();
         File[] files = f.listFiles();
+        if(files == null)
+        {
+            return null;
+        }
         if (files.length == 0)
             return null;
         else {
