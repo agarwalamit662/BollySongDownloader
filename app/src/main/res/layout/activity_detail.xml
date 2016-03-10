@@ -51,11 +51,12 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="250dp"
+
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         >
 
-        <!--<android.support.design.widget.CollapsingToolbarLayout
+        <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -63,25 +64,26 @@
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleMarginStart="48dp"
-            app:expandedTitleMarginEnd="64dp">-->
+            app:expandedTitleMarginEnd="64dp">
 
-            <!--<ImageView
+            <ImageView
                 android:id="@+id/backdrop"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
+                android:src = "@drawable/one"
                 android:fitsSystemWindows="true"
                 app:layout_collapseMode="parallax" />
--->
-            <android.support.v7.widget.Toolbar
+
+            <!--<android.support.v7.widget.Toolbar
                 android:id="@+id/toolbarSongs"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:layout_scrollFlags="scroll|enterAlways|snap"/>
+                app:layout_scrollFlags="scroll|enterAlways|snap"/>-->
 
-        <!--</android.support.design.widget.CollapsingToolbarLayout>-->
+        </android.support.design.widget.CollapsingToolbarLayout>
 
     </android.support.design.widget.AppBarLayout>
 
@@ -102,56 +104,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:paddingTop="12dp">
-
-
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_below="@+id/recyclerviewMovies"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/card_margin">
-
-                <LinearLayout
-                    style="@style/Widget.CardContent"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Songs"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="No Songs Found"
-                        android:id="@+id/noSongsFound"
-                        android:visibility="gone"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-
-                    <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-                        android:id="@+id/recyclerviewMovies"
-                        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        />
-
-                    <!--
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/cheese_ipsum" />
-                     -->
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
@@ -226,6 +178,55 @@
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/card_margin">
+
+                <LinearLayout
+                    style="@style/Widget.CardContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Songs"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="No Songs Found"
+                        android:id="@+id/noSongsFound"
+                        android:visibility="gone"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                    <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/recyclerviewMovies"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        />
+
+                    <!--
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cheese_ipsum" />
+                     -->
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+
 
         </LinearLayout>
 

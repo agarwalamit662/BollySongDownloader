@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:focusable="false">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    >
+
+    <TextView
+        android:id="@+id/songname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:textSize="20dp"
+        android:text="SongName"
+        android:paddingRight="40dp"
+        android:gravity="left"/>
+    <ImageView
+        android:id="@+id/dwnldIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignRight="@id/songname"
+        android:gravity = "right"
+        android:src="@drawable/ic_get_app_black_24dp" />
+
+</RelativeLayout>
+</LinearLayout>
