@@ -1,6 +1,9 @@
 package com.support.android.songsdownloader.model;
 
-public class Songs {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class Songs  implements Serializable {
 
 	
 	public Movie movie;

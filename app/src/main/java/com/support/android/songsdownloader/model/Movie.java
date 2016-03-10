@@ -1,12 +1,14 @@
 package com.support.android.songsdownloader.model;
 
-import java.util.List;
+import android.graphics.Bitmap;
 
+import java.util.List;
+import java.io.Serializable;
 /**
  * Created by amitagarwal3 on 3/7/2016.
  */
-
-public class Movie {
+@SuppressWarnings("serial")
+public class Movie implements Serializable {
 
     public String MOVIESTARTCHAR;
     public String MOVIENAME;
@@ -18,12 +20,13 @@ public class Movie {
     public String DIRECTOR;
     public String URLS;
     public List<Songs> SONGS;
+    public Bitmap BITMAP;
 
     public Movie() {
         super();
         // TODO Auto-generated constructor stub
     }
-    public Movie(int mOVIENUMBER, String mOVIESTARTCHAR, String mOVIENAME, String rELEASE_DATE , String mUSIC_DIRECTOR, String aCTORS, String sINGERS, String dIRECTOR, String uRLS,List<Songs> SONGS) {
+    public Movie(int mOVIENUMBER, String mOVIESTARTCHAR, String mOVIENAME, String rELEASE_DATE , String mUSIC_DIRECTOR, String aCTORS, String sINGERS, String dIRECTOR, String uRLS,List<Songs> SONGS,Bitmap bitmap) {
         super();
         this.MOVIESTARTCHAR = mOVIESTARTCHAR;
         this.MOVIENAME = mOVIENAME;
@@ -35,6 +38,7 @@ public class Movie {
         this.DIRECTOR = dIRECTOR;
         this.URLS = uRLS;
         this.SONGS = SONGS;
+        this.BITMAP = bitmap;
     }
 
     public List<Songs> getSONGS() {
@@ -96,6 +100,8 @@ public class Movie {
     public String getURLS() {
         return this.URLS;
     }
+    public Bitmap getBITMAP(){return this.BITMAP;}
+    public void setBITMAP(Bitmap bitmap){this.BITMAP = bitmap;}
     public void setURLS(String uRLS) {
         this.URLS = uRLS;
     }

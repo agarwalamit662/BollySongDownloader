@@ -7,6 +7,7 @@ import android.graphics.Point;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,8 +20,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -58,10 +62,13 @@ public class CheeseDetailActivity extends AppCompatActivity {
 
         dialog = new ProgressDialog(CheeseDetailActivity.this);
 
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarSongs);
+        /*final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarSongs);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(mName);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
+        final CollapsingToolbarLayout collapsingToolbar =
+                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+        loadBackdrop();
+        //getSupportActionBar().setTitle(mName);
         (new AsyncListZipViewLoader()).execute("http://www.songsmp3.com" + mUrl);
         (new AsyncListViewLoader()).execute("http://www.songsmp3.com" + mUrl);
 
@@ -75,14 +82,14 @@ public class CheeseDetailActivity extends AppCompatActivity {
         ttzip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),linkTwo,Toast.LENGTH_SHORT);
+                Toast.makeText(getApplicationContext(), linkTwo, Toast.LENGTH_SHORT);
 
             }
         });
 
 
 
-        loadBackdrop();
+
     }
     @Override
     public void onPause() {
@@ -318,8 +325,8 @@ public class CheeseDetailActivity extends AppCompatActivity {
 
 
     private void loadBackdrop() {
-       // final ImageView imageView = (ImageView) findViewById(R.id.backdrop);
-       // Glide.with(this).load(Cheeses.getRandomCheeseDrawable()).centerCrop().into(imageView);
+        final ImageView imageView = (ImageView) findViewById(R.id.backdrop);
+        Glide.with(this).load(Cheeses.getRandomCheeseDrawable()).centerCrop().into(imageView);
     }
 
     @Override

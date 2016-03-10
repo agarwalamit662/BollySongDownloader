@@ -144,6 +144,8 @@ public class MainActivity extends AppCompatActivity {
 
             adapter.addFragment(new DownloadListFragment(), "Downloads", 1);
 
+            adapter.addFragment(new TiledListFragment(),"Tiled",2);
+
         }
         if(caseNumber.equals("Downloads"))
         {
