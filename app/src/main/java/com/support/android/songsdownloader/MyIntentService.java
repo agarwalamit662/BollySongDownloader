@@ -76,6 +76,9 @@ public class MyIntentService extends CheckIntentService {
         songName = intent.getStringExtra("songName");
         Bundle extras = intent.getExtras();
         songId = extras.getInt("songId");
+        Log.e("SongID is : ",String.valueOf(songId));
+        Log.e("SongID is : ",String.valueOf(songId));
+        Log.e("SongID is : ",String.valueOf(songId));
         if (songId != 0){
             Log.e("songId ki value hai", String.valueOf(songId));
             Log.e("songId ki value hai", String.valueOf(songId));

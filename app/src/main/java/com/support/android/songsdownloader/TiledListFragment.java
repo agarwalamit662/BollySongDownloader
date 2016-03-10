@@ -73,8 +73,8 @@ public class TiledListFragment extends Fragment {
 
         rView.setHasFixedSize(true);
         rView.setLayoutManager(lLayout);
-        (new AsyncListViewLoader()).execute("http://usmumamitagarw1:8080/useraccount/rest/songs/latest");
-       // (new AsyncListViewLoader()).execute("http://10.0.2.2:8080/useraccount/rest/songs/latest");
+       // (new AsyncListViewLoader()).execute("http://usmumamitagarw1:8080/useraccount/rest/songs/latest");
+        (new AsyncListViewLoader()).execute("http://10.0.2.2:8080/useraccount/rest/songs/latest");
 
         return view;
     }
@@ -113,16 +113,20 @@ public class TiledListFragment extends Fragment {
         protected void onPostExecute(List<Movie> result) {
             super.onPostExecute(result);
 
-            RecyclerViewAdapter rcAdapter = new RecyclerViewAdapter(getActivity(),result, new RecyclerViewAdapter.OnItemClickListener() {
-                @Override public void onItemClick(Movie item) {
+            if(result != null && result.size() > 0 ) {
+                RecyclerViewAdapter rcAdapter = new RecyclerViewAdapter(getActivity(), result, new RecyclerViewAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(Movie item) {
 
-                    Intent i = new Intent(getContext(), MovieDetailActivity.class);
-                    i.putExtra("MovieObject", item);
-                    startActivity(i);
+                        Intent i = new Intent(getContext(), MovieDetailActivity.class);
+                        i.putExtra("MovieObject", item);
+                        startActivity(i);
 
-                    Toast.makeText(getContext(), "Item Clicked : "+item.getMOVIENAME(), Toast.LENGTH_SHORT).show();
-                }});
-            rView.setAdapter(rcAdapter);
+                        Toast.makeText(getContext(), "Item Clicked : " + item.getMOVIENAME(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+                rView.setAdapter(rcAdapter);
+            }
 
         }
 
@@ -142,10 +146,17 @@ public class TiledListFragment extends Fragment {
                 Log.e("Params is : ",params[0]);
                 u = new URL(params[0]);
                 HttpURLConnection urlConnection = (HttpURLConnection) u.openConnection();
-               // urlConnection.setRequestMethod("GET");
+                urlConnection.setConnectTimeout(1000);
+                urlConnection.setRequestMethod("GET");
+
                // urlConnection.setDoOutput(true);
               //  urlConnection.setChunkedStreamingMode(100);
+
                 urlConnection.connect();
+                int code = urlConnection.getResponseCode();
+                Log.e("Response Code is : ",String.valueOf(code));
+                Log.e("Response Code is : ",String.valueOf(code));
+                Log.e("Response Code is : ",String.valueOf(code));
                 inputStream = new InputStreamReader(urlConnection.getInputStream());
 
                 try {
@@ -226,7 +237,11 @@ public class TiledListFragment extends Fragment {
             } catch (ProtocolException e) {
                 e.printStackTrace();
             } catch (IOException e) {
+                Log.e("In IO Exception ","In IO Exception");
+                Log.e("In IO Exception ","In IO Exception");
                 e.printStackTrace();
+                return null;
+
             }
 
             return mReturn;

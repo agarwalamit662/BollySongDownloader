@@ -201,12 +201,13 @@ public class MovieDetailActivity extends AppCompatActivity {
 
             public final TextView mSongName;
             //public final TextView mSingerName;
+            public final ImageView mDwnldClick;
             public ViewHolder(View view) {
                 super(view);
                 mView = view;
 
                 mSongName = (TextView) view.findViewById(R.id.songname);
-                //mSingerName = (TextView) view.findViewById(R.id.singersong);
+                mDwnldClick = (ImageView) view.findViewById(R.id.dwnldIcon);
 
             }
 
@@ -242,6 +243,23 @@ public class MovieDetailActivity extends AppCompatActivity {
             holds = holder;
 
             holds.mSongName.setText(mValues.get(position).getSONGNAME().toString());
+            holds.mDwnldClick.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent intentMyIntentService = new Intent(mContext, MyIntentService.class);
+                    intentMyIntentService.putExtra(MyIntentService.EXTRA_KEY_IN, mValues.get(position).getSONGLINK_128KBPS_CONV().toString());
+                    intentMyIntentService.putExtra("songName",mValues.get(position).getSONGNAME().toString());
+                    intentMyIntentService.putExtra("songId",(int)mValues.get(position).getSONG_ID());
+                    mContext.startService(intentMyIntentService);
+                    Toast.makeText(mContext,"Song added to download queue",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(mContext, MainActivity.class);
+                    intent.putExtra("EXTRA_PAGE", "1");
+                    mContext.startActivity(intent);
+
+
+                }
+            });
             //holds.mSingerName.setText(mValues.get(position).getSINGERS().toString());
         }
 
