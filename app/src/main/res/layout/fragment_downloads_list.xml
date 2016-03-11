@@ -25,7 +25,8 @@
         <LinearLayout
             style="@style/Widget.CardContent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            >
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -37,6 +38,7 @@
                 android:textSize="13dp"
                 android:id="@+id/currDwnld"
                 android:paddingLeft="5dp"
+                android:paddingRight="10dp"
                 android:layout_weight="0.2"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
@@ -61,6 +63,15 @@
 
                 android:layout_marginTop="5dp"
                 android:id="@+id/currPrg"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Progress : "
+                android:textSize="10dp"
+                android:id="@+id/progPercent"
+                android:paddingLeft="5dp"
+                android:paddingRight="10dp"
+                />
 
 
 

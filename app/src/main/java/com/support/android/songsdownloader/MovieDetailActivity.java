@@ -251,6 +251,7 @@ public class MovieDetailActivity extends AppCompatActivity {
                     intentMyIntentService.putExtra(MyIntentService.EXTRA_KEY_IN, mValues.get(position).getSONGLINK_128KBPS_CONV().toString());
                     intentMyIntentService.putExtra("songName",mValues.get(position).getSONGNAME().toString());
                     intentMyIntentService.putExtra("songId",(int)mValues.get(position).getSONG_ID());
+                    intentMyIntentService.putExtra(MyIntentService.EXTRA_KEY_LENGTH,mValues.get(position).getSONGLINK_128KBPS().toString());
                     mContext.startService(intentMyIntentService);
                     Toast.makeText(mContext,"Song added to download queue",Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(mContext, MainActivity.class);

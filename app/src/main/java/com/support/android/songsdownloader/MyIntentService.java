@@ -22,6 +22,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -32,6 +33,8 @@ public class MyIntentService extends CheckIntentService {
     public static final String EXTRA_KEY_IN = "EXTRA_IN";
     public static final String EXTRA_KEY_OUT = "EXTRA_OUT";
     public static final String EXTRA_KEY_UPDATE = "EXTRA_UPDATE";
+    public static final String EXTRA_KEY_LENGTH = "EXTRA_KEY_LENGTH";
+    String lengthCal;
     String msgFromActivity;
     String songName;
     String extraOut;
@@ -72,6 +75,7 @@ public class MyIntentService extends CheckIntentService {
     protected void onHandleIntent(Intent intent) {
 
         //get input
+        lengthCal = intent.getStringExtra(EXTRA_KEY_LENGTH);
         msgFromActivity = intent.getStringExtra(EXTRA_KEY_IN);
         songName = intent.getStringExtra("songName");
         Bundle extras = intent.getExtras();
@@ -95,24 +99,40 @@ public class MyIntentService extends CheckIntentService {
                 Log.e("Inif all not null: ", msgFromActivity);
                 Log.e("Inif all not null: ", msgFromActivity);
 
-                URL url1 = new URL(msgFromActivity);
+                int lenghtOfFileCal = 0;
+                URL url2 = null;
+                if(lengthCal != null){
+                    url2 = convertToURLEscapingIllegalCharacters(lengthCal);
+                    HttpURLConnection urlConnectionlen = (HttpURLConnection) url2.openConnection();
+                    urlConnectionlen.setRequestMethod("GET");
+                    urlConnectionlen.setDoOutput(true);
+
+                    urlConnectionlen.setChunkedStreamingMode(100);
+                    urlConnectionlen.connect();
+                    lenghtOfFileCal = urlConnectionlen.getContentLength();
+                }
+                URL url1 = convertToURLEscapingIllegalCharacters(msgFromActivity);
+                //new URL(msgFromActivity);
                 HttpURLConnection urlConnection = (HttpURLConnection) url1.openConnection();
                 urlConnection.setRequestMethod("GET");
                 urlConnection.setDoOutput(true);
+                //urlConnection.setRequestMethod("HEAD");
                 urlConnection.setChunkedStreamingMode(100);
                 urlConnection.connect();
-              //  final String contentLengthStr=urlConnection.getHeaderField("content-length");
-             //   Log.e("content Lenght Str ",contentLengthStr);
-             //   Log.e("content Lenght Str ",contentLengthStr);
-             //   Log.e("content Lenght Str ",contentLengthStr);
+                //  final String contentLengthStr=urlConnection.getHeaderField("content-length");
+                //   Log.e("content Lenght Str ",contentLengthStr);
+                //   Log.e("content Lenght Str ",contentLengthStr);
+                //   Log.e("content Lenght Str ",contentLengthStr);
 
 
-               // URLConnection conexion = url1.openConnection();
+                // URLConnection conexion = url1.openConnection();
                 //conexion.setRequestProperty("GET");
-               // conexion.setRequestProperty("Accept-Encoding", "identity");
-               // conexion.connect();
+                // conexion.setRequestProperty("Accept-Encoding", "identity");
+                // conexion.connect();
 
                 int lenghtOfFile = urlConnection.getContentLength();
+                if(lenghtOfFileCal != 0 && lengthCal != null)
+                    lenghtOfFile = lenghtOfFileCal;
                 Log.e("length of file is : ",String.valueOf(lenghtOfFile));
                 Log.e("length of file is : ",String.valueOf(lenghtOfFile));
                 //InputStream input = new BufferedInputStream(urlConnection.getInputStream());
@@ -142,8 +162,8 @@ public class MyIntentService extends CheckIntentService {
                         intentUpdate.putExtra("songName",songName);
                         int prog = (int) ((total / (float) lenghtOfFile) * 100);
                         intentUpdate.putExtra(EXTRA_KEY_UPDATE, (int) ((total / (float) lenghtOfFile) * 100));
-                       // intentUpdate.putExtra("progressSong",lenghtOfFile);
-                       // intentUpdate.putExtra("totalProgress",total);
+                        // intentUpdate.putExtra("progressSong",lenghtOfFile);
+                        // intentUpdate.putExtra("totalProgress",total);
                         sendBroadcast(intentUpdate);
                         //publishProgress((int)((total/(float)lenghtOfFile)*100));
                         output.write(data, 0, count);
@@ -182,6 +202,20 @@ public class MyIntentService extends CheckIntentService {
 
     }
 
+    public URL convertToURLEscapingIllegalCharacters(String string){
+        try {
+            String decodedURL = string;
+            //URLDecoder.decode(string, "UTF-8");
+            URL url = new URL(decodedURL);
+            URI uri = new URI(url.getProtocol(), url.getUserInfo(), url.getHost(), url.getPort(), url.getPath(), url.getQuery(), url.getRef());
+            decodedURL=uri.toASCIIString();
+            return new URL(decodedURL);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
     class MyDownloadStatusListener implements DownloadStatusListener {
 
         int position;
@@ -214,6 +248,6 @@ public class MyIntentService extends CheckIntentService {
             intentUpdate.putExtra(EXTRA_KEY_UPDATE, progress);
             sendBroadcast(intentUpdate);
 
-             }
+        }
     }
 }

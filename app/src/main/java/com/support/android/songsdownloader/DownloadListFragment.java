@@ -35,6 +35,7 @@ import java.util.Random;
 public class DownloadListFragment extends Fragment {
 
     private TextView currDown;
+    private TextView progPercent;
     private ProgressBar currProg;
     private Button cancelDownloadButton;
     private CardView actionDow;
@@ -54,6 +55,7 @@ public class DownloadListFragment extends Fragment {
 
         rv = (RecyclerView) view.findViewById(R.id.recyclerviewTest);
         actionDow = (CardView) view.findViewById(R.id.actionDownloads);
+        progPercent = (TextView) view.findViewById(R.id.progPercent);
         setupRecyclerView(rv);
         currDown = (TextView) view.findViewById(R.id.currDwnld);
         currProg = (ProgressBar) view.findViewById(R.id.currPrg);
@@ -129,6 +131,7 @@ public class DownloadListFragment extends Fragment {
             actionDow.setVisibility(View.GONE);
             currDown.setText(result);
             currProg.setVisibility(View.GONE);
+            progPercent.setVisibility(View.GONE);
             cancelDownloadButton.setVisibility(View.GONE);
             setupRecyclerView(rv);
 
@@ -141,13 +144,14 @@ public class DownloadListFragment extends Fragment {
         public void onReceive(Context context, Intent intent) {
             actionDow.setVisibility(View.VISIBLE);
             currProg.setVisibility(View.VISIBLE);
+            progPercent.setVisibility(View.VISIBLE);
             cancelDownloadButton.setVisibility(View.VISIBLE);
             int update = intent.getIntExtra(MyIntentService.EXTRA_KEY_UPDATE, 0);
 
             Bundle extras = intent.getExtras();
             cancelId = extras.getInt("songCanId");
             currDown.setText(extras.getString("songName"));
-
+            progPercent.setText("Progress: "+String.valueOf(update)+"%");
             currProg.setProgress(update);
         }
     }

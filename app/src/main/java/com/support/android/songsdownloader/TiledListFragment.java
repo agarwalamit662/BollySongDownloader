@@ -73,8 +73,8 @@ public class TiledListFragment extends Fragment {
 
         rView.setHasFixedSize(true);
         rView.setLayoutManager(lLayout);
-       // (new AsyncListViewLoader()).execute("http://usmumamitagarw1:8080/useraccount/rest/songs/latest");
-        (new AsyncListViewLoader()).execute("http://10.0.2.2:8080/useraccount/rest/songs/latest");
+        (new AsyncListViewLoaderTiled()).execute("http://usmumamitagarw1:8080/useraccount/rest/songs/latest");
+        //(new AsyncListViewLoaderTiled()).execute("http://10.0.2.2:8080/useraccount/rest/songs/latest");
 
         return view;
     }
@@ -103,7 +103,7 @@ public class TiledListFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    private class AsyncListViewLoader extends AsyncTask<String, Void, List<Movie>> {
+    private class AsyncListViewLoaderTiled extends AsyncTask<String, Void, List<Movie>> {
         private final ProgressDialog dialog = new ProgressDialog(getActivity());
         InputStreamReader inputStream = null;
         String result = "";
@@ -141,9 +141,9 @@ public class TiledListFragment extends Fragment {
             List<Movie> mReturn = new ArrayList<Movie>();
             URL u;
             try {
-                Log.e("Params is : ",params[0]);
-                Log.e("Params is : ",params[0]);
-                Log.e("Params is : ",params[0]);
+               // Log.e("Params is : ",params[0]);
+               // Log.e("Params is : ",params[0]);
+               // Log.e("Params is : ",params[0]);
                 u = new URL(params[0]);
                 HttpURLConnection urlConnection = (HttpURLConnection) u.openConnection();
                 urlConnection.setConnectTimeout(1000);
@@ -154,9 +154,9 @@ public class TiledListFragment extends Fragment {
 
                 urlConnection.connect();
                 int code = urlConnection.getResponseCode();
-                Log.e("Response Code is : ",String.valueOf(code));
-                Log.e("Response Code is : ",String.valueOf(code));
-                Log.e("Response Code is : ",String.valueOf(code));
+               // Log.e("Response Code is : ",String.valueOf(code));
+               // Log.e("Response Code is : ",String.valueOf(code));
+               // Log.e("Response Code is : ",String.valueOf(code));
                 inputStream = new InputStreamReader(urlConnection.getInputStream());
 
                 try {
@@ -170,9 +170,9 @@ public class TiledListFragment extends Fragment {
 
                     inputStream.close();
                     result = sBuilder.toString();
-                    Log.e("Result is : ",result);
-                    Log.e("Result is : ",result);
-                    Log.e("Result is : ",result);
+                  //  Log.e("Result is : ",result);
+                  //  Log.e("Result is : ",result);
+                  //  Log.e("Result is : ",result);
 
                     int mid = 0,sid=0;
                     String schar,mname,date,mdirector,actors,singers,director,url;
