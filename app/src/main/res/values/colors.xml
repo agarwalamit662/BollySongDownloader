@@ -18,6 +18,13 @@
 <resources>
     <color name="window_background">#FFF5F5F5</color>
     <color name="color_tiled">#2196F3</color>
+    <color name="lightGrey">#e6e6e6</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="notifBuilder">#673AB7</color>
+
+    <color name="primary">#FF9800</color>
+    <color name="primaryDark">#F57C00</color>
     <color name="color_tiled_dark">#1976D2</color>
     <color name="accent_color">#ffffff</color>
 

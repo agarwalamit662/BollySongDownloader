@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (C) 2015 The Android Open Source Project
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,11 +16,11 @@
 
 <resources>
 
-    <style name="Theme.DesignDemo" parent="Base.Theme.DesignDemo">
-    </style>
+    <style name="Theme.DesignDemo" parent="Base.Theme.DesignDemo"></style>
 
     <style name="Base.Theme.DesignDemo" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">#673AB7</item>
+
         <item name="colorPrimaryDark">#512DA8</item>
         <item name="colorAccent">#FF4081</item>
         <item name="android:windowBackground">@color/window_background</item>
@@ -33,6 +32,64 @@
         <item name="android:paddingTop">24dp</item>
         <item name="android:paddingBottom">24dp</item>
         <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="notificationButton">
+        <item name="android:layout_width">@dimen/notificationButtonsSize</item>
+        <item name="android:layout_height">@dimen/notificationButtonsSize</item>
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:padding">@dimen/notificationButtonsPadding</item>
+    </style>
+
+    <style name="notificationQuitButton" parent="notificationButton">
+        <item name="android:layout_width">@dimen/notificationQuitButtonSize</item>
+        <item name="android:layout_height">@dimen/notificationQuitButtonSize</item>
+    </style>
+
+    <style name="navigationCheckButton">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+    </style>
+
+    <style name="buttonNext">
+        <item name="android:src">@drawable/next</item>
+    </style>
+
+    <style name="buttonPrevious">
+        <item name="android:src">@drawable/previous</item>
+    </style>
+
+    <style name="MineCustomTabText" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">11sp</item>
+    </style>
+
+
+    <!-- Generated with http://android-holo-colors.com -->
+    <style name="WhiteSeekBar" parent="android:Widget.Holo.Light.SeekBar">
+        <item name="android:progressDrawable">@drawable/seekbar_progress_horizontal_holo_light
+        </item>
+        <item name="android:indeterminateDrawable">
+            @drawable/seekbar_progress_horizontal_holo_light
+        </item>
+        <item name="android:thumb">@drawable/seekbar_control_selector_holo_light</item>
+    </style>
+
+    <style name="Theme.DesignDemo.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.DesignDemo.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="overflowButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginTop">6dp</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:src">@drawable/overflow</item>
     </style>
 
 </resources>

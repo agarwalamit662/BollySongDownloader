@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutTop"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="0dp"
+    android:orientation="horizontal"
+    android:background="@color/notifBuilder">
+
+    <!--<ImageView
+        android:id="@+id/imageViewSongImage"
+        android:layout_width="@dimen/songImageSize"
+        android:layout_height="@dimen/songImageSize"
+        android:scaleType="fitCenter"
+        android:visibility="visible"
+        android:layout_alignParentRight="true" />-->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp" >
+
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:singleLine="true"
+            android:gravity="center_horizontal"
+            android:text="Song Title"
+            android:textSize="20dp"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:textStyle="bold" />
+
+        <TextView
+            android:paddingTop="5dp"
+            android:id="@+id/textViewArtist"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/noSong"
+            android:textSize="15dp"
+            android:gravity="center_horizontal"
+            android:textColor="@android:color/white"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:singleLine="true"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"/>
+
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="2dp">
+
+            <include layout="@layout/playback_controls" />
+
+            <!--<TextView
+                android:id="@+id/textViewTime"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="0.0/0.0secs"
+                android:textColor="@android:color/white"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:paddingLeft="44dp"
+                android:layout_gravity="center_vertical" />-->
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

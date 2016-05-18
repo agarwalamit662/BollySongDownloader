@@ -19,13 +19,24 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_files"
-            android:icon="@drawable/ic_dashboard"
-            android:title="Files" />
-
+            android:icon="@drawable/ic_home_variant_black_36dp"
+            android:title="Home"
+            />
         <item
-            android:id="@+id/nav_downloads"
-            android:icon="@drawable/ic_dashboard"
-            android:title="Downloads" />
+            android:id="@+id/nav_aboutus"
+            android:icon="@drawable/ic_odnoklassniki_black_36dp"
+            android:title="About Us" />
+        <item
+            android:id="@+id/nav_shareapp"
+            android:icon="@drawable/ic_share_variant_black_36dp"
+            android:title="Share App" />
+        <item
+            android:id="@+id/nav_appupdate"
+            android:icon="@drawable/ic_android_debug_bridge_black_36dp"
+            android:title="Updates" />
+
+
+
 
     </group>
 

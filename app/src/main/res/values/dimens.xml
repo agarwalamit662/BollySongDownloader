@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (C) 2015 The Android Open Source Project
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,8 +16,22 @@
 
 <resources>
     <dimen name="detail_backdrop_height">150dp</dimen>
+
     <dimen name="card_margin">16dp</dimen>
-    <dimen name="card_margin_songs">16dp</dimen>
+    <dimen name="songImageSize">80dp</dimen>
+    <dimen name="card_margin_songs">8dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="list_item_avatar_size">40dp</dimen>
+    <dimen name="listImageSize">40dp</dimen>
+
+    <dimen name="spacing_medium">0dp</dimen>
+    <dimen name="notificationImageSize">100dp</dimen>
+    <dimen name="notificationButtonsSize">50dp</dimen>
+    <dimen name="notificationQuitButtonSize">40dp</dimen>
+    <dimen name="notificationButtonsPadding">5dp</dimen>
+
+    <dimen name="dialogPadding">24dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
 </resources>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:focusable="false">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="0dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/leftLayout">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/popImage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="10dp"
+            android:paddingTop="0dp"
+            android:src="@mipmap/ic_launcher"/>
+
+
+        <TextView
+            android:id="@+id/trackname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:paddingTop="15dp"
+            android:textSize="15dp"
+            android:text="SongName"
+            android:textColor="@color/black"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:paddingRight="80dp"
+            android:gravity="left"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentRight="true"
+            android:layout_alignRight="@id/leftLayout"
+
+            >
+
+            <ImageButton
+                android:id="@+id/buttonMenu"
+                style="@style/overflowButton" />
+
+        <at.markushi.ui.CircleButton
+            android:id="@+id/playIcon"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:src="@drawable/ic_play_test"
+            android:gravity = "right"
+
+            app:cb_color="@color/notifBuilder"
+            app:cb_pressedRingWidth="8dip" />
+        </LinearLayout>
+
+
+        <!--<ImageView
+            android:id="@+id/playIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="7dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignRight="@id/songname"
+            android:gravity = "right"
+            android:src="@drawable/ic_play_circle_filled_black_36dp" />-->
+
+
+    </RelativeLayout>
+</LinearLayout>

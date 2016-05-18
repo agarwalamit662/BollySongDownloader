@@ -5,15 +5,21 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <TextView
+
+    <Spinner
         android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:textSize="20sp"
-        android:text="Latest Bollywood Songs"
-        android:id="@+id/songsBolly"
-        android:paddingBottom="0dp"
-        android:paddingTop="5dp"
-        android:paddingLeft="5dp"/>
+        android:layout_height="45dp"
+        android:id="@+id/selectChar"
+        android:background="?attr/colorPrimary"
+        />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="2dp"
+        android:id="@+id/selectYear"
+        android:background="?attr/colorPrimary"/>
+
     <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/recycler_view_tiled"
         android:layout_width="match_parent"

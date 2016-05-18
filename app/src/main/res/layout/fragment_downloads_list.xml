@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:id="@+id/containerCheck"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingTop="16dp"
@@ -27,32 +27,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Current Song"
-                android:textSize="13dp"
+                android:textSize="18dip"
                 android:id="@+id/currDwnld"
                 android:paddingLeft="5dp"
                 android:paddingRight="10dp"
-                android:layout_weight="0.2"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="25dp"
-                android:text="Cancel"
-                android:textSize="10dp"
-                android:textColor="#ffffff"
-                android:background="#3b5998"
-                android:id="@+id/cancelDwnldRunning"
-                android:layout_weight="0.8"
-                />
-                </LinearLayout>
+
+
 
             <ProgressBar
                 android:layout_width="match_parent"
@@ -60,7 +49,6 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 style="?android:attr/progressBarStyleHorizontal"
-
                 android:layout_marginTop="5dp"
                 android:id="@+id/currPrg"/>
             <TextView
@@ -71,71 +59,50 @@
                 android:id="@+id/progPercent"
                 android:paddingLeft="5dp"
                 android:paddingRight="10dp"
+                android:paddingBottom="10dp"
                 />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="Cancel"
+                android:textSize="10dp"
+                android:textColor="#ffffff"
+                android:background="#3b5998"
+                android:id="@+id/cancelDwnldRunning"
 
+                />
 
 
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
-
-
-<!--    <TextView
+    <Button
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text = "Active Download"
-        android:textSize="15dp"
-        android:textAlignment="center"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:id="@+id/actDwnld"
-        android:orientation="vertical"
-        android:background="#324564"
-        android:layout_marginTop="30dp">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:text = "Current Download"
-            android:textSize="20dp"
-            android:id="@+id/currDwnldOld"
-            android:textColor="#ffffff"
-            android:layout_weight="0.5"/>
-            <Button
-                android:layout_width="90dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="5dp"
-                android:id="@+id/cancelDwnldRunning"
-                android:text = "Cancel"
-                android:textSize="10dp"
-                android:layout_weight="0.0"/>
-        </LinearLayout>
-            <ProgressBar
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_marginBottom="10dp"
-            android:id="@+id/currPrgSong"/>
+        android:layout_height="40dp"
+        android:layout_below="@+id/actionDownloads"
+        android:background="@color/primary"
+        android:text="Refresh Downloads"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        android:visibility="gone"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:id="@+id/refreshDownloads"
+        />
 
 
-    </LinearLayout>-->
-
-<TextView
+    <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text = "Completed"
+    android:text = "Completed Downloads"
     android:textSize="15dp"
     android:layout_marginLeft="10dp"
+    android:layout_marginTop="5dp"
     android:id="@+id/completed"
-    android:layout_below="@+id/actionDownloads"
+    android:layout_below="@+id/refreshDownloads"
+
     />
 
 <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"

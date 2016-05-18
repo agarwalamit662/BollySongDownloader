@@ -1,44 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="8dp"
-    android:paddingBottom="8dp"
-    android:gravity="center_vertical"
-    android:orientation="horizontal"
-    android:weightSum="1">
+    android:layout_height="70dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:focusable="false">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="0dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        >
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/avatarDwnld"
-        android:layout_width="@dimen/list_item_avatar_size"
-        android:layout_height="@dimen/list_item_avatar_size"
-        android:layout_marginRight="10dp"
-        />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
         <TextView
             android:id="@+id/textDwnld"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textAppearance="?attr/textAppearanceListItem"
-            android:layout_weight="0.3"
-        />
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="0.7"
-                android:text="Cancel"
-                android:id="@+id/cancelButtonDownloads"
-                />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:paddingTop="15dp"
+            android:textSize="15dp"
+            android:text="SongName "
+            android:textColor="@color/black"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:paddingRight="80dp"
+            android:gravity="left"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentRight="true"
+            android:layout_alignRight="@id/textDwnld"
+
+            >
+
+
+        <ImageButton
+            android:id="@+id/buttonMenuDwnld"
+            style="@style/overflowButton"
+            android:layout_alignParentRight="true"/>
+
+
+        <at.markushi.ui.CircleButton
+            android:id="@+id/playIconDownloads"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:src="@drawable/ic_play_test"
+            android:gravity = "right"
+            android:layout_alignParentRight="true"
+            android:layout_alignRight="@id/textDwnld"
+            app:cb_color="@color/notifBuilder"
+            app:cb_pressedRingWidth="8dip" />
+
         </LinearLayout>
+        <!--<ImageView
+            android:id="@+id/playIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="7dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignRight="@id/songname"
+            android:gravity = "right"
+            android:src="@drawable/ic_play_circle_filled_black_36dp" />-->
 
 
+    </RelativeLayout>
 </LinearLayout>
-
