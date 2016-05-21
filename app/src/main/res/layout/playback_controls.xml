@@ -28,33 +28,33 @@
     <ImageButton
         android:id="@+id/imageButtonPrevious"
         style="@style/buttonPrevious"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="30sp"
+        android:layout_height="30sp"
         android:scaleType="fitXY"
         android:contentDescription="@string/previous"
         android:layout_marginLeft="0dp"
 
         android:background="@android:color/transparent" />
 
-    <com.support.android.tinyplayer.CheckableImageButton
+    <com.support.android.musicindia.CheckableImageButton
         android:id="@+id/imageButtonPlayPause"
-        android:layout_width="38dp"
-        android:layout_height="38dp"
+        android:layout_width="38sp"
+        android:layout_height="38sp"
         android:scaleType="fitXY"
         android:layout_gravity="center_vertical"
         android:src="@drawable/play_pause"
         android:contentDescription="@string/play"
-        android:layout_marginLeft="70dp"
+        android:layout_marginLeft="70sp"
         android:background="@android:color/transparent" />
 
     <ImageButton
         android:id="@+id/imageButtonNext"
         style="@style/buttonNext"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="30sp"
+        android:layout_height="30sp"
         android:scaleType="fitXY"
         android:contentDescription="@string/next"
-        android:layout_marginLeft="90dp"
+        android:layout_marginLeft="90sp"
         android:background="@android:color/transparent" />
 
 </LinearLayout>

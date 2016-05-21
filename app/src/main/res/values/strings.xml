@@ -15,18 +15,13 @@
 -->
 
 <resources>
-    <string name="app_name">BollyMusicPlayer</string>
+    <string name="app_name">MusicIndia</string>
   <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
-  <string name="cheese_ipsum">Jarlsberg lancashire edam. Dolcelatte hard cheese brie st. agur blue
-    cheese caerphilly bavarian bergkase cheese and biscuits mascarpone. Cheeseburger swiss bavarian
-    bergkase cream cheese fromage frais cheesy feet port-salut airedale. St. agur blue cheese rubber
-    cheese caerphilly cheddar cheesecake cream cheese manchego lancashire. Roquefort squirty cheese
-    the big cheese.</string>
   <string name="checkin">Checkin</string>
   <string name="menu_settings">Settings</string>
   <string name="menu_switchmode">Switch Mode</string>
 
-  <string name="country_name">Nigeria</string>
+
   <string name="action_settings">Settings</string>
   <string name="action_refresh">Settings</string>
   <string name="action_new">Settings</string>
@@ -244,6 +239,7 @@
   <string name="pause_pathData" translatable="false">M 4.94745,2 L 4.94745,46 L 21.526275,46 L 21.526275,2 Z  M 26.473725,2 L 26.473725,46 L 43.05255,46 L 43.05255,2 Z</string>
     <string name="title_activity_temp">TempActivity</string>
     <string name="title_activity_edit_tag">EditTag</string>
+  <string name="title_activity_search_song">SearchSongActivity</string>
     <string name="title_activity_base">BaseActivity</string>
     <string name="title_activity_now_playing">NowPlaying</string>
 

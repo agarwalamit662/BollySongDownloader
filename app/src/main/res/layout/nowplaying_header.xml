@@ -20,9 +20,9 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginRight="2dp" >
+        android:layout_marginTop="15sp"
+        android:layout_marginLeft="2sp"
+        android:layout_marginRight="2sp" >
 
         <TextView
             android:id="@+id/textViewTitle"
@@ -33,19 +33,19 @@
             android:singleLine="true"
             android:gravity="center_horizontal"
             android:text="Song Title"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:ellipsize="marquee"
             android:marqueeRepeatLimit="marquee_forever"
             android:scrollHorizontally="true"
             android:textStyle="bold" />
 
         <TextView
-            android:paddingTop="5dp"
+            android:paddingTop="5sp"
             android:id="@+id/textViewArtist"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/noSong"
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:gravity="center_horizontal"
             android:textColor="@android:color/white"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -61,8 +61,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="2dp">
+            android:layout_marginTop="20sp"
+            android:layout_marginBottom="2sp">
 
             <include layout="@layout/playback_controls" />
 
