@@ -196,8 +196,9 @@ public class AboutMeActitvity extends BaseActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        if(BaseActivity.musicConnection != null)
+            unbindService(BaseActivity.musicConnection);
 
-        unbindService(BaseActivity.musicConnection);
     }
 
     @Override

@@ -347,6 +347,20 @@ public class TiledListFragmentPunjabi extends Fragment {
         });
 
 
+        if(onRefresh == null){
+            Log.e("onRefresh is null","null");
+            Log.e("onRefresh is null","null");
+            if(sp1.getSelectedItemPosition() == 0)
+                onRefresh = SongsFilesData.myMap.get("punjabi0");
+            else
+                onRefresh = SongsFilesData.myMap.get("punjabi"+String.valueOf(sp1.getSelectedItemPosition()));
+        }
+        else if(onRefresh != null){
+            Log.e("OnRefresh Not null size",String.valueOf(onRefresh.size()));
+            Log.e("OnRefresh Not null size",String.valueOf(onRefresh.size()));
+        }
+
+
         rView.setHasFixedSize(true);
         rView.setLayoutManager(lLayout);
         if(onRefresh == null ) {

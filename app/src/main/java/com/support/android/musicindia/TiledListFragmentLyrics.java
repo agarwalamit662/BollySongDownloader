@@ -86,6 +86,18 @@ public class TiledListFragmentLyrics extends Fragment {
 
         rView.setHasFixedSize(true);
         rView.setLayoutManager(lLayout);
+
+        if(onRefresh == null){
+            Log.e("onRefresh is null","null");
+            Log.e("onRefresh is null","null");
+            onRefresh = SongsFilesData.myMapLyrics.get("lyrics00");
+        }
+        else if(onRefresh != null){
+            Log.e("OnRefresh Not null size",String.valueOf(onRefresh.size()));
+            Log.e("OnRefresh Not null size",String.valueOf(onRefresh.size()));
+        }
+
+
         if(onRefresh == null ) {
 
 

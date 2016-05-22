@@ -102,6 +102,18 @@ public class PopSongsFragment extends Fragment implements SearchView.OnQueryText
         rv.addItemDecoration(new DividerItemDecoration(this.getActivity(), LinearLayoutManager.VERTICAL));
         //rv.setAdapter(new SimpleStringRecyclerViewAdapter(this.getActivity(), BrowserSong.getSongsInDirectory("date"),PopSongsFragment.this));
 
+
+        if(onRefresh == null){
+            Log.e("onRefresh is null","null");
+            Log.e("onRefresh is null","null");
+            onRefresh = SongsFilesData.myIndiMap.get("indi00");
+
+        }
+        else if(onRefresh != null){
+            Log.e("OnRefresh Not null size",String.valueOf(onRefresh.size()));
+            Log.e("OnRefresh Not null size",String.valueOf(onRefresh.size()));
+        }
+
         if(onRefresh == null ) {
             /*Log.e("OnRefresh Null","On refresh Null");
             Log.e("OnRefresh Null", "On refresh Null");*/

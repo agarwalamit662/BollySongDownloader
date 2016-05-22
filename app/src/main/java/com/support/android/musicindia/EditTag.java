@@ -213,7 +213,8 @@ public class EditTag extends BaseActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        unbindService(BaseActivity.musicConnection);
+        if(BaseActivity.musicConnection != null)
+            unbindService(BaseActivity.musicConnection);
     }
 
     @Override

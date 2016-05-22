@@ -39,7 +39,7 @@ public class MainActivity extends BaseActivity{
 
 
 
-    public static boolean splashLoadedTiny = true;
+    /*public static boolean splashLoadedTinyMainActivity = true;*/
 
     private static int positionRe=0;
     private MusicPlayerApplication app;
@@ -90,6 +90,8 @@ public class MainActivity extends BaseActivity{
     @Override
     public void onStop() {
         super.onStop();
+        Log.e("In on Stop Main", "In on stop Main");
+        Log.e("In on Stop Main","In on stop Main");
 
         /*unbindService(BaseActivity.musicConnection);*/
 
@@ -145,6 +147,24 @@ public class MainActivity extends BaseActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String call = extras.getString("CALLMETHOD");
+            String value = extras.getString("EXTRA_PAGE");
+            if(value != null){
+                int position= Integer.parseInt(value );
+
+                selectFragment(position);
+            }
+
+            boolean splashLoadedTinyMainActivity = extras.getBoolean("splashLoadedTinyMainActivity");
+            MusicPlayerApplication.splashLoadedTinyMainActivity = splashLoadedTinyMainActivity;
+            /*if(call != null){
+                MainActivity m = (MainActivity) this;
+                m.update();
+            }*/
+        }
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -191,20 +211,7 @@ public class MainActivity extends BaseActivity{
             }
         });
 
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            String call = extras.getString("CALLMETHOD");
-            String value = extras.getString("EXTRA_PAGE");
-            if(value != null){
-                int position= Integer.parseInt(value );
 
-                selectFragment(position);
-            }
-            /*if(call != null){
-                MainActivity m = (MainActivity) this;
-                m.update();
-            }*/
-        }
 
 
 
@@ -266,6 +273,7 @@ public class MainActivity extends BaseActivity{
 
                 }
                 i.putExtra("splashflag","false");
+                i.putExtra("splashLoadedTinyMainActivity",String.valueOf(MusicPlayerApplication.splashLoadedTinyMainActivity));
                 startActivity(i);
                 finish();
                 return true;
@@ -278,9 +286,14 @@ public class MainActivity extends BaseActivity{
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         adapter = new Adapter(getSupportFragmentManager());
 
+        Log.e("Case number is :",caseNumber);
+        Log.e("Case number is :",caseNumber);
+        Log.e("SplashLoadeValue: Main",String.valueOf(MusicPlayerApplication.splashLoadedTinyMainActivity));
+        Log.e("SplashLoadeValue: Main",String.valueOf(MusicPlayerApplication.splashLoadedTinyMainActivity));
         if(caseNumber.equals("Files")){
-
-            if(!splashLoadedTiny){
+            Log.e("SplashLoadeValue: ",String.valueOf(MusicPlayerApplication.splashLoadedTinyMainActivity));
+            Log.e("SplashLoadeValue: ", String.valueOf(MusicPlayerApplication.splashLoadedTinyMainActivity));
+            if(!MusicPlayerApplication.splashLoadedTinyMainActivity){
 
                 adapter.addFragment(new TiledListFragment(),"Movies",0);
                 adapter.addFragment(new PopSongsFragment(),"Pop Songs",1);

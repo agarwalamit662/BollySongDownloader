@@ -35,6 +35,11 @@ public class MusicPlayerApplication extends Application {
     public SongsFilesData fd;
     public static List<Songs> queuedDownloads;
     public static boolean splashLoadedTiny = false;
+    public static boolean splashLoadedTinyMainActivity = false;
+
+
+
+
     //public ImagesCache imagesCache;
 
 	@Override
@@ -74,4 +79,9 @@ public class MusicPlayerApplication extends Application {
 	public String getLastSearch() {
 		return lastSearch;
 	}
+
+    @Override
+    public void onTerminate(){
+        super.onTerminate();
+    }
 }

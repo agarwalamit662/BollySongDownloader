@@ -83,6 +83,10 @@ public class TiledListFragment extends Fragment {
         rView = (RecyclerView)view.findViewById(R.id.recycler_view_tiled);
         setHasOptionsMenu(true);
         int numberOfColumns = 3;
+
+
+
+
         if(getActivity().getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_0 ||
                 getActivity().getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_180 )
         {lLayout = new GridLayoutManager(this.getActivity(),3);}
@@ -604,7 +608,18 @@ public class TiledListFragment extends Fragment {
             }
         });
 
-
+        if(onRefresh == null){
+            Log.e("onRefresh is null","null");
+            Log.e("onRefresh is null","null");
+            if(sp1.getSelectedItemPosition() == 0)
+                onRefresh = SongsFilesData.myMap.get("songs00");
+            else
+                onRefresh = SongsFilesData.myMap.get("songs"+String.valueOf(sp1.getSelectedItemPosition())+String.valueOf(sp2.getSelectedItemPosition()));
+        }
+        else if(onRefresh != null){
+            Log.e("OnRefresh Not null size",String.valueOf(onRefresh.size()));
+            Log.e("OnRefresh Not null size",String.valueOf(onRefresh.size()));
+        }
 
 
         rView.setHasFixedSize(true);

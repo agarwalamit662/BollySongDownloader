@@ -69,6 +69,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         settings= getApplicationContext().getSharedPreferences("prefs", Context.MODE_PRIVATE);
         boolean firstRun=settings.getBoolean("firstRun", false);
 
+
         if(!firstRun && conDet.isConnectingToInternet()){
             (new AsyncListViewLoaderTiledFirst()).execute(deviceId, "punjabi0");
         }
@@ -86,10 +87,19 @@ public class SplashScreenActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             String splashflag = extras.getString("splashflag");
-            if(splashflag != null && splashflag.equals("false"))
+            String splashLoadedTinyMainActivityFlag = extras.getString("splashLoadedTinyMainActivity");
+            if(splashflag != null && splashflag.equals("false") && splashLoadedTinyMainActivityFlag != null && splashLoadedTinyMainActivityFlag.equals("true")) {
                 MusicPlayerApplication.splashLoadedTiny = false;
+                MusicPlayerApplication.splashLoadedTinyMainActivity = true;
+            }
+            else if(splashflag != null && splashflag.equals("false") && splashLoadedTinyMainActivityFlag != null && splashLoadedTinyMainActivityFlag.equals("false")){
+                MusicPlayerApplication.splashLoadedTiny = false;
+                MusicPlayerApplication.splashLoadedTinyMainActivity = false;
+            }
             Log.e("SplashLoaded: ",String.valueOf(MusicPlayerApplication.splashLoadedTiny));
             Log.e("SplashLoaded: ",String.valueOf(MusicPlayerApplication.splashLoadedTiny));
+
+            //ArrayList<Movie> movie = (Movie) extras.getSerializable("bollywood");
         }
 
         // Start timer and launch main activity
@@ -105,11 +115,16 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         }
         else {
-            Log.e("IN ELSE","In ELSE");
-            Log.e("IN ELSE","In ELSE");
-            Log.e("IN ELSE","In ELSE");
+            Log.e("IN ELSE", "In ELSE");
+            Log.e("IN ELSE", "In ELSE");
+            Log.e("IN ELSE", "In ELSE");
             MusicPlayerApplication.splashLoadedTiny = true;
             Intent goToMainActivity = new Intent(SplashScreenActivity.this, MainActivity.class);
+            goToMainActivity.putExtra("splashLoadedTiny",true);
+            /*goToMainActivity.putExtra("bollywood",(Movie) SongsFilesData.myMap.get("songs00"));
+            goToMainActivity.putExtra("punjabi",(Movie) SongsFilesData.myMap.get("punjabi0"));
+            goToMainActivity.putExtra("pop", (SongsIndiPop) SongsFilesData.myIndiMap.get("indi00"));
+            goToMainActivity.putExtra("lyrics", (MovieLyrics) SongsFilesData.myMapLyrics.get("lyrics00"));*/
             goToMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(goToMainActivity);
             finish();
@@ -118,13 +133,15 @@ public class SplashScreenActivity extends AppCompatActivity {
         startAsPlayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.splashLoadedTiny = true;
+                MusicPlayerApplication.splashLoadedTinyMainActivity = true;
                 openAsPlayer = true;
                 indexOfDownloads = 1;
                 MusicPlayerApplication.splashLoadedTiny = true;
                 loadingDataText.setVisibility(View.VISIBLE);
                 Intent goToMainActivity = new Intent(SplashScreenActivity.this, MainActivity.class);
                 goToMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                goToMainActivity.putExtra("splashLoadedTinyMainActivity", true);
+                goToMainActivity.putExtra("splashLoadedTiny",true);
                 startActivity(goToMainActivity);
                 finish();
 
@@ -139,7 +156,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                     loadingDataText.setVisibility(View.VISIBLE);
                     openAsPlayer = false;
                     indexOfDownloads = 1;
-                    MainActivity.splashLoadedTiny = false;
+                    MusicPlayerApplication.splashLoadedTinyMainActivity = false;
                     (new AsyncListViewLoaderTiled()).execute(driveURL + "latestPunjabiSongs.txt", "punjabi0");
                 }
             });
@@ -181,9 +198,12 @@ public class SplashScreenActivity extends AppCompatActivity {
                 indexOfDownloads = 4;
                 openAsPlayer = false;
                 MusicPlayerApplication.splashLoadedTiny = true;
-                MainActivity.splashLoadedTiny = false;
+                MusicPlayerApplication.splashLoadedTinyMainActivity = false;
                 //splashLoadedTiny = true;
-                startActivity(new Intent(SplashScreenActivity.this, MainActivity.class));
+                Intent goToMainActivity = new Intent(SplashScreenActivity.this, MainActivity.class);
+                goToMainActivity.putExtra("splashLoadedTiny",true);
+                goToMainActivity.putExtra("splashLoadedTinyMainActivity",false);
+                startActivity(goToMainActivity);
                 finish();
 
             }
@@ -191,7 +211,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             {
                 Toast.makeText(getApplicationContext(),"No Internet Connection",Toast.LENGTH_SHORT).show();
                 openAsPlayer = false;
-                MainActivity.splashLoadedTiny = true;
+                MusicPlayerApplication.splashLoadedTinyMainActivity = true;
                 indexOfDownloads = 4;
                 pgBar.setVisibility(View.INVISIBLE);
                 loadingDataText.setVisibility(View.INVISIBLE);
@@ -766,6 +786,8 @@ public class SplashScreenActivity extends AppCompatActivity {
                             SharedPreferences.Editor editor=settings.edit();
                             editor.putBoolean("firstRun",true);
                             editor.commit();
+
+
                         }
 
 
