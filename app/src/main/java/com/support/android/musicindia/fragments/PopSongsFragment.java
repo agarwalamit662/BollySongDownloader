@@ -202,7 +202,6 @@ public class PopSongsFragment extends Fragment implements SearchView.OnQueryText
                     }
 
                 }
-
             }
 
         }
