@@ -188,7 +188,6 @@ public class PopSongsFragment extends Fragment implements SearchView.OnQueryText
                 }
                 else
                 {
-
                     if (conDet.isConnectingToInternet()){
 
                         rv.setAdapter(new RecyclerViewAdapterPopSongs(this.getActivity(), onRefresh,PopSongsFragment.this));
