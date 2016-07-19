@@ -22,9 +22,9 @@
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
     <!--#d70377-->
-    <color name="notifBuilder">#673AB7</color>
+    <color name="notifBuilder">#292731</color>
     <!--<color name="notifBuilder">#d70377</color>-->
-    <color name="primary">#FF9800</color>
+    <color name="primary">#942560</color>
     <color name="primaryDark">#F57C00</color>
     <color name="color_tiled_dark">#1976D2</color>
     <color name="accent_color">#ffffff</color>

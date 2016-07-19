@@ -44,6 +44,17 @@
                 app:layout_scrollFlags="scroll|enterAlways">
 
                 <include layout="@layout/titleandimageonly_header"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/songAddedToDownload"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    android:padding="10dp"
+                    android:visibility="gone"
+                    android:background="@color/primaryDark"
+                    android:text="Song Added To Download"
+                    />
                 <!--<include layout="@layout/nowplaying_header" />
                 <include layout="@layout/seekbars" />-->
             </LinearLayout>
@@ -64,8 +75,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clipChildren="false">
-
-
 
 
                 <android.support.v7.widget.CardView
@@ -222,7 +231,7 @@
                     android:id = "@+id/cardRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/card_margin_songs">
+                    android:layout_margin="2dp">
 
                     <LinearLayout
                         style="@style/Widget.CardContent"
@@ -231,7 +240,7 @@
                         android:orientation="vertical"
                         >
 
-                        <ImageView
+                        <!--<ImageView
                             android:layout_width="match_parent"
                             android:layout_height="120dp"
                             android:id = "@+id/movieurl"
@@ -240,7 +249,7 @@
                             android:src="@drawable/download"
                             android:visibility="gone"
                             android:layout_marginBottom="15dp"
-                            />
+                            />-->
 
                         <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
                             android:id="@+id/recycler_view_movie_songs"
@@ -270,7 +279,8 @@
             android:layout_margin="@dimen/card_margin_songs"
             android:layout_alignBottom="@+id/main_content"
             android:layout_marginBottom="10dp"
-            android:background="@color/primary"
+            android:background="@drawable/button_corner"
+            android:foreground="?android:attr/selectableItemBackground"
             android:textColor="@color/white"
             android:text="Go To Downloads Page"
             android:textSize="20dp"

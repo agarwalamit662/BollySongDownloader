@@ -28,6 +28,7 @@
             android:textColor="@color/black"
             android:maxLines="1"
             android:ellipsize="end"
+            android:background="?android:attr/selectableItemBackground"
             android:paddingRight="80dp"
             android:gravity="left"/>
 

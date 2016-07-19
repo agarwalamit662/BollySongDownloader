@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@color/notifBuilder">
+    android:background="@drawable/ic_musicindia">
 
 
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -14,11 +14,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.support.android.musicindia.NowPlaying">
+    tools:context=".activities.NowPlaying">
 
-    <android.support.design.widget.AppBarLayout
+    <!--<android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="370sp"
+        android:layout_height="wrap_content"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         android:fitsSystemWindows="true"
         >
@@ -35,18 +35,6 @@
             app:expandedTitleMarginStart="48sp"
             app:expandedTitleMarginEnd="64sp">
 
-
-
-            <ImageView
-            android:id="@+id/backdrop"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_launcher"
-            android:fitsSystemWindows="true"
-            app:layout_collapseMode="parallax"
-             />
-
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
@@ -55,7 +43,7 @@
                 app:layout_collapseMode="pin"/>
         </android.support.design.widget.CollapsingToolbarLayout>
 
-    </android.support.design.widget.AppBarLayout>
+    </android.support.design.widget.AppBarLayout>-->
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -65,15 +53,36 @@
         android:descendantFocusability="beforeDescendants"
         android:focusableInTouchMode="false"
         android:id="@+id/nestedSongs"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/backdrop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:maxHeight="1dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_musicindia"
 
+                app:layout_collapseMode="parallax"
+                />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:orientation="vertical">
             <include layout="@layout/nowplaying_header" />
             <include layout="@layout/seekbars" />
+                </LinearLayout>
         </LinearLayout>
 
 

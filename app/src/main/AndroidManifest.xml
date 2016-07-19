@@ -15,8 +15,8 @@
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.support.android.musicindia"
-    android:versionCode="3"
-    android:versionName="2.0.1">
+    android:versionCode="7"
+    android:versionName="2.0.5">
 
     <uses-permission android:name="com.android.vending.CHECK_LICENSE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -28,13 +28,13 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:name="com.support.android.musicindia.MusicPlayerApplication"
+        android:name=".application.MusicPlayerApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/Theme.DesignDemo">
         <activity
-            android:name="com.support.android.musicindia.SplashScreenActivity"
+            android:name=".activities.SplashScreenActivity"
             android:configChanges="orientation|keyboardHidden|keyboard"
             android:noHistory="true"
             android:screenOrientation="portrait">
@@ -45,9 +45,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.support.android.musicindia.MainActivity"
-            android:launchMode="singleTask"
+            android:name=".activities.MainActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -65,103 +65,99 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.support.android.musicindia.MovieDetailActivity"
-            android:parentActivityName="com.support.android.musicindia.MainActivity"
+            android:name=".activities.MovieDetailActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:screenOrientation="portrait"
-            >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.support.android.musicindia.MainActivity" />
-        </activity>
-
-        <activity
-            android:name="com.support.android.musicindia.AboutMeActitvity"
-            android:parentActivityName="com.support.android.musicindia.MainActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:parentActivityName=".activities.MainActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.support.android.musicindia.MainActivity" />
+                android:value=".activities.MainActivity" />
         </activity>
-
         <activity
-            android:name="com.support.android.musicindia.MovieDetailActivityLyrics"
-            android:parentActivityName="com.support.android.musicindia.MainActivity"
+            android:name=".activities.AboutMeActitvity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:screenOrientation="portrait"
-            >
+            android:parentActivityName=".activities.MainActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.support.android.musicindia.MainActivity" />
+                android:value=".activities.MainActivity" />
+        </activity>
+        <activity
+            android:name=".activities.MovieDetailActivityLyrics"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:parentActivityName=".activities.MainActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.MainActivity" />
         </activity>
 
-        <service android:name="com.support.android.musicindia.MyIntentService" />
-        <service android:name="com.support.android.musicindia.MusicServiceTinyPlayer" />
+        <service android:name=".services.MyIntentService" />
+        <service android:name=".services.MusicServiceTinyPlayer" />
         <!-- <service android:name=".PodcastEpisodeDownloaderService" /> -->
-        <receiver android:name="com.support.android.musicindia.MusicServiceTinyPlayer$MediaButtonReceiver">
+        <receiver android:name=".services.MusicServiceTinyPlayer$MediaButtonReceiver">
             <intent-filter android:priority="1000">
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>
         </receiver>
 
         <activity
-            android:name="com.support.android.musicindia.EditTag"
+            android:name=".activities.EditTag"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/title_activity_edit_tag"
-            android:configChanges="orientation|screenSize|keyboardHidden"
-            android:screenOrientation="portrait"
-            >
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.support.android.musicindia.MainActivity" />
+                android:value=".activities.MainActivity" />
         </activity>
-
         <activity
-            android:name="com.support.android.musicindia.LyricsActivity"
+            android:name=".activities.LyricsActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="LyricsActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden"
-            android:screenOrientation="portrait"
-            >
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.support.android.musicindia.MainActivity" />
+                android:value=".activities.MainActivity" />
+        </activity>
+        <activity
+            android:name=".activities.SearchSongActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="@string/title_activity_search_song"
+            android:parentActivityName=".activities.MainActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.MainActivity" />
+        </activity>
+        <activity
+            android:name=".activities.SearchSongLyricsActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="@string/title_activity_search_song"
+            android:parentActivityName=".activities.MainActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.MainActivity" />
+        </activity>
+        <activity
+            android:name=".activities.BaseActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="@string/title_activity_base"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.NowPlaying"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="@string/title_activity_now_playing"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.MainActivity" />
         </activity>
 
-        <activity
-            android:name="com.support.android.musicindia.SearchSongActivity"
-            android:label="@string/title_activity_search_song"
-            android:configChanges="orientation|screenSize|keyboardHidden"
-            android:screenOrientation="portrait"
-            >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.support.android.musicindia.MainActivity" />
-        </activity>
-        <activity
-            android:name="com.support.android.musicindia.SearchSongLyricsActivity"
-            android:label="@string/title_activity_search_song"
-            android:configChanges="orientation|screenSize|keyboardHidden"
-            android:screenOrientation="portrait"
-            >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.support.android.musicindia.MainActivity" />
-        </activity>
-        <activity
-            android:name="com.support.android.musicindia.BaseActivity"
-            android:label="@string/title_activity_base"
-            android:configChanges="orientation|screenSize|keyboardHidden"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name="com.support.android.musicindia.NowPlaying"
-            android:label="@string/title_activity_now_playing"
-            android:screenOrientation="portrait"
-            android:configChanges="orientation|screenSize|keyboardHidden"
-            >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.support.android.musicindia.MainActivity" />
-        </activity>
+        <provider
+            android:name=".data.UserProvider"
+            android:authorities="com.support.android.musicindia.data" />
+
     </application>
 
 </manifest>

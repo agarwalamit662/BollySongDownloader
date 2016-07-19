@@ -19,13 +19,14 @@
     <style name="Theme.DesignDemo" parent="Base.Theme.DesignDemo"></style>
 
     <style name="Base.Theme.DesignDemo" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">#673AB7</item>
+        <item name="colorPrimary">#292731</item>
 
-        <item name="colorPrimaryDark">#512DA8</item>
+        <item name="colorPrimaryDark">#272a31</item>
         <!--<item name="colorPrimary">#d70377</item>
 
         <item name="colorPrimaryDark">#d70379</item>-->
         <item name="colorAccent">#FF4081</item>
+        <item name="colorButtonNormal">@color/primary</item>
         <item name="android:windowBackground">@color/window_background</item>
     </style>
 

@@ -36,7 +36,7 @@
 
         android:background="@android:color/transparent" />
 
-    <com.support.android.musicindia.CheckableImageButton
+    <com.support.android.musicindia.helper.CheckableImageButton
         android:id="@+id/imageButtonPlayPause"
         android:layout_width="38sp"
         android:layout_height="38sp"
