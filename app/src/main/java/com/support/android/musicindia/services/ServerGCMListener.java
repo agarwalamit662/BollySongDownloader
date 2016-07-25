@@ -38,17 +38,20 @@ public class ServerGCMListener extends GcmListenerService {
         Log.e("InMEss",message);
         Log.e("InMEss", message);
         Log.e("InMEss",message);
-        String title = "TITLE HARD CODE";
-                //data.getString("title");
+        String title = data.getString("title");
+                //"TITLE HARD CODE";
+
         Log.e("INttile",title);
         Log.e("INttile", title);
-        String tikerText = "TICKER TEXT HARD CODE";
+        String urlBollyWood = data.getString("urlBollyWood");
+                //"TICKER TEXT HARD CODE";
                 //data.getString("tickerText");
 
+        String tikerText = data.getString("tikerText");
         /*String smallIconURL = data.getString("smallIcon");
         String LargeIconURL = data.getString("largeIcon");*/
 
-        Bitmap smalliconbitmap = getBitmapFromURL("https://cdn4.iconfinder.com/data/icons/iconsimple-logotypes/512/github-512.png");
+        Bitmap smalliconbitmap = getBitmapFromURL(urlBollyWood);
 
         //ShowSimpleNotifications(message,title,tikerText,smalliconbitmap);
         //Bitmap largeiconbitmap = getBitmapFromURL(LargeIconURL);
