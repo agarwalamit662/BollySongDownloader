@@ -430,7 +430,7 @@ public class MusicServiceTinyPlayer extends Service implements OnCompletionListe
 
         Bitmap image = null;
         if(currentPlayingItem!=null && currentPlayingItem.hasImage()) {
-            //image = ((MusicPlayerApplication)getApplication()).imagesCache.getImageSync(currentPlayingItem);
+          //  image = ((MusicPlayerApplication)getApplication()).imagesCache.getImageSync(currentPlayingItem);
         }
 
 
@@ -465,7 +465,7 @@ public class MusicServiceTinyPlayer extends Service implements OnCompletionListe
 
 		*/
 		Notification.Builder notificationBuilder = new Notification.Builder(this);
-		notificationBuilder.setSmallIcon(R.drawable.play);
+		notificationBuilder.setSmallIcon(R.drawable.ic_stat_mi);
         notificationBuilder.setContentIntent(pendingIntent);
         notificationBuilder.setOngoing(true);
 		notificationBuilder.setPriority(Notification.PRIORITY_MAX);

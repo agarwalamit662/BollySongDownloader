@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "562242486138",
+    "project_id": "music-india"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:562242486138:android:a1d24cc6ba42be2c",
+        "android_client_info": {
+          "package_name": "com.support.android.musicindia"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhVLFSRjoHTj9rpQc8AG39KC5A-W5TRzY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -309,14 +309,11 @@ public class MyIntentService extends CheckIntentService {
 
                         if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
                             sendBroadcast(beforeFourFourIntent);
-                            Log.e("Before Kitkat","In Kitkat");
-                            Log.e("Before Kitkat", "In Kitkat");// only for gingerbread and newer versions
+
                         }
                         else if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
                         {
 
-                            Log.e("In Kitkat","In Kitkat");
-                            Log.e("In Kitkat","In Kitkat");
                             sendBroadcast(mediaScanIntent);
 
                         }
@@ -341,14 +338,10 @@ public class MyIntentService extends CheckIntentService {
                             beforeFourFourIntent.setData(uri);
 
                             if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-                                Log.e("Before Kitkat","In Kitkat");
-                                Log.e("Before Kitkat","In Kitkat");
                                 sendBroadcast(beforeFourFourIntent);    // only for gingerbread and newer versions
                             }
                             else if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
                             {
-                                Log.e("In Kitkat","In Kitkat");
-                                Log.e("In Kitkat","In Kitkat");
                                 sendBroadcast(mediaScanIntent);
                             }
                         }

@@ -206,9 +206,6 @@ public class PopSongsFragment extends Fragment implements SearchView.OnQueryText
         }
     }
 
-
-
-
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.sample_actions, menu);

@@ -18,6 +18,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.support.android.musicindia.helper.ConnectionDetector;
 import com.support.android.musicindia.application.MusicPlayerApplication;
 import com.support.android.musicindia.fragments.PopSongsFragment;
@@ -31,6 +33,8 @@ import com.support.android.musicindia.model.Songs;
 import com.support.android.musicindia.model.SongsFilesData;
 import com.support.android.musicindia.model.SongsIndiPop;
 import com.support.android.musicindia.model.SongsLyrics;
+import com.support.android.musicindia.services.RegistrationService;
+import com.support.android.musicindia.services.TokenRefreshListenerService;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -151,6 +155,45 @@ public class SplashScreenActivity extends AppCompatActivity {
             });
         }
 
+        boolean isPlayServiceInstalled = isPlayServicesInstalled();
+        if(isPlayServiceInstalled){
+
+            boolean regToken = settings.getBoolean("regToken", false);
+            if(!regToken){
+
+                Log.e("PLAYSERVICEHAI","PLAYSERVICEAVAILABLE");
+                Log.e("PLAYSERVICEHAI","PLAYSERVICEAVAILABLE");
+                Log.e("PLAYSERVICEHAI","PLAYSERVICEAVAILABLE");
+                Log.e("PLAYSERVICEHAI","PLAYSERVICEAVAILABLE");
+                Intent i = new Intent(this, RegistrationService.class);
+                startService(i);
+
+            }
+        }
+        else{
+
+            Log.e("PlayStoreNA","Play Sotre Not availble");
+        }
+
+
+
+    }
+
+    //code to check Google play services availability.
+    private boolean isPlayServicesInstalled() {
+        GoogleApiAvailability getGoogleapiAvailability = GoogleApiAvailability.getInstance();
+        int Code = getGoogleapiAvailability.isGooglePlayServicesAvailable(this);
+        if (Code != ConnectionResult.SUCCESS) {
+            if (getGoogleapiAvailability.isUserResolvableError(Code)) {
+                getGoogleapiAvailability.getErrorDialog(this, Code, 9000)
+                        .show();
+            } else {
+                Log.i("SplashActivity", "This device is not supported.");
+                finish();
+            }
+            return false;
+        }
+        return true;
     }
 
     @Override

@@ -6,8 +6,9 @@ android {
 
     defaultConfig {
         applicationId "com.support.android.musicindia"
-        minSdkVersion 12
+        minSdkVersion 16
         targetSdkVersion 22
+        multiDexEnabled true
 
     }
     buildTypes {
@@ -21,7 +22,7 @@ android {
 repositories {
     jcenter()
 }
-
+apply plugin: 'com.google.gms.google-services'
 dependencies {
     compile 'com.android.support:design:23.1.1'
     compile 'com.android.support:cardview-v7:23.2.0'
@@ -37,4 +38,10 @@ dependencies {
     /*compile 'com.google.android.gms:play-services-ads:8.4.0'*/
     /*compile files('libs/mp3agic-0.8.3.jar')*/
     compile files('libs/jaudiotagger-2.0.4-20111207.115108-15.jar')
+
+
+    compile 'com.google.android.gms:play-services-identity:8.3.0'
+    compile 'com.google.android.gms:play-services-plus:8.3.0'
+    compile 'com.google.android.gms:play-services-gcm:8.3.0'
+
 }

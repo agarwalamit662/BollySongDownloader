@@ -52,10 +52,10 @@
             android:id="@+id/songLyricsId"
             android:maxLines="300"
             android:textColor="@color/black"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
+            android:padding="25dp"
+            android:layout_marginTop="10dp"
             android:textSize="15dp"
-            android:text="Song Lyrics"/>
+            android:text="Song Lyric jkwne iuw hdiuq hiudh iuqd hiuqd oijiojiojoijoijoijoijiuhiuhiuhiuhiuhiuhiuhiuhiuhiuhiuhiuhiuhiuhiuhhqiudwiuhwdwdhuiwdikwdjdwdwojdwwdoijwoi wqhiud hqwiud hqiud hqiud ihuis"/>
 
         </android.support.v4.widget.NestedScrollView>
 

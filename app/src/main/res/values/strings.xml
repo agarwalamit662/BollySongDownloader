@@ -243,6 +243,7 @@
     <string name="title_activity_base">BaseActivity</string>
     <string name="title_activity_now_playing">NowPlaying</string>
     <string name="title_activity_main2">Main2Activity</string>
-
+    
+    <string name="gcm_SenderId">562242486138</string>
 
 </resources>

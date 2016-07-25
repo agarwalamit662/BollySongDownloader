@@ -15,8 +15,8 @@
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.support.android.musicindia"
-    android:versionCode="7"
-    android:versionName="2.0.5">
+    android:versionCode="8"
+    android:versionName="2.0.6">
 
     <uses-permission android:name="com.android.vending.CHECK_LICENSE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -26,6 +26,19 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <!-- This avoid other apps to register and receive messages from server. -->
+    <permission
+        android:name="com.feelzdroid.gcmexample.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.feelzdroid.gcmexample.permission.C2D_MESSAGE" />
+
+    <!--
+    For GcmReceiver service handles message sent from GCM server, this permission is
+    required to receive message
+    -->
+    <uses-permission android:name="com.google.android.c2dm.permission.SEND" />
 
     <application
         android:name=".application.MusicPlayerApplication"
@@ -158,6 +171,37 @@
             android:name=".data.UserProvider"
             android:authorities="com.support.android.musicindia.data" />
 
+        <receiver
+            android:name="com.google.android.gms.gcm.GcmReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+
+                <category android:name="com.support.android.musicindia" />
+            </intent-filter>
+        </receiver>
+        <!-- [End default gcm receiver] -->
+
+
+        <!-- [Custom service gets push notification from server, add code in this service to show notifications] -->
+        <service
+            android:name=".services.ServerGCMListener"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".services.RegistrationService"
+            android:exported="false" />
+        <service
+            android:name=".services.TokenRefreshListenerService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.android.gms.iid.InstanceID" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
