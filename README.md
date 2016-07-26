@@ -1,6 +1,6 @@
-![alt text](https://raw.githubusercontent.com/chrisbanes/cheesesquare/master/art/icon.png)
+![alt text](https://lh3.googleusercontent.com/ALT7TR312YXzuPBS4zBbfD4H_j3ZQ_dMrCjuF3xbc0RfeL0LIlCIS307XxIiUkXysQ=w300-rw)
 
-Cheesesquare Sample
+MusicIndia Android Application
 ===================================
 
 Demos the new Android Design library. This is not an exhaustive sample, but shows
