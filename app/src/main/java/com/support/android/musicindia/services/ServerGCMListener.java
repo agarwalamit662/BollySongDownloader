@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v7.app.NotificationCompat;
@@ -17,10 +18,18 @@ import com.google.android.gms.gcm.GcmListenerService;
 import com.support.android.musicindia.R;
 import com.support.android.musicindia.activities.MainActivity;
 import com.support.android.musicindia.activities.SplashScreenActivity;
+import com.support.android.musicindia.model.Songs;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
 
 public class ServerGCMListener extends GcmListenerService {
@@ -28,33 +37,14 @@ public class ServerGCMListener extends GcmListenerService {
     @Override
     public void onMessageReceived(String from, Bundle data) {
 
-        Log.i("TAG", "Notification received");
-
-        Log.e("InMEsRec", "In Rec");
-        Log.e("InMEsRec","In Rec");
-        Log.e("InMEsRec","In Rec");
-
         String message = data.getString("message");
-        Log.e("InMEss",message);
-        Log.e("InMEss", message);
-        Log.e("InMEss",message);
         String title = data.getString("title");
-                //"TITLE HARD CODE";
-
-        Log.e("INttile",title);
-        Log.e("INttile", title);
         String urlBollyWood = data.getString("urlBollyWood");
-                //"TICKER TEXT HARD CODE";
-                //data.getString("tickerText");
 
         String tikerText = data.getString("tikerText");
-        /*String smallIconURL = data.getString("smallIcon");
-        String LargeIconURL = data.getString("largeIcon");*/
 
         Bitmap smalliconbitmap = getBitmapFromURL(urlBollyWood);
 
-        //ShowSimpleNotifications(message,title,tikerText,smalliconbitmap);
-        //Bitmap largeiconbitmap = getBitmapFromURL(LargeIconURL);
         showBigPictureStyleNotifications(message,title,tikerText,smalliconbitmap,smalliconbitmap);
     }
 

@@ -15,8 +15,8 @@
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.support.android.musicindia"
-    android:versionCode="8"
-    android:versionName="2.0.6">
+    android:versionCode="10"
+    android:versionName="2.0.8">
 
     <uses-permission android:name="com.android.vending.CHECK_LICENSE" />
     <uses-permission android:name="android.permission.INTERNET" />

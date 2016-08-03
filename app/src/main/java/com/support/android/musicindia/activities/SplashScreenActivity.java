@@ -69,6 +69,16 @@ public class SplashScreenActivity extends AppCompatActivity {
     private TextView loadingDataText;
 
     @Override
+    protected void onResume(){
+        super.onResume();
+        final ConnectionDetector conDet = new ConnectionDetector(SplashScreenActivity.this);
+        if(conDet.isConnectingToInternet()){
+            (new AsyncTaskShareUrl()).execute("", "");
+            (new AsyncTaskUpdateLink()).execute("", "");
+        }
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);    // Removes title bar
         super.onCreate(savedInstanceState);
