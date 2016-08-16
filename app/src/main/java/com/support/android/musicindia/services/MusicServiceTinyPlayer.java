@@ -316,8 +316,6 @@ public class MusicServiceTinyPlayer extends Service implements OnCompletionListe
 	public boolean playItem(PlayableItem item, boolean startPlaying) {
 
 		if (mediaPlayer != null) {
-			//Log.e("Media Player not null","Media Player not null");
-			//Log.e("Media Player not null", "Media Player not null");
 			wakeLockAcquire();
 			currentPlayingItem = item;
 			mediaPlayer.reset();

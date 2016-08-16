@@ -15,6 +15,7 @@
  */
 
 package com.support.android.musicindia.application;
+import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 import android.util.Log;
@@ -23,6 +24,7 @@ import android.util.Log;
 import com.support.android.musicindia.dto.DTOProviderSONG;
 import com.support.android.musicindia.model.Songs;
 import com.support.android.musicindia.model.SongsFilesData;
+import com.support.android.musicindia.services.MyIntentService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,10 +45,19 @@ public class MusicPlayerApplication extends Application {
         fd = new SongsFilesData();
         queuedDownloads = new ArrayList<Songs>();
 
-        Log.e("InOnCreate","InOnCreate");
-        Log.e("InOnCreate","InOnCreate");
-        DTOProviderSONG.deleteCompletedSongsfromDatabase(getApplicationContext());
-        DTOProviderSONG.updateALLRUNNINGSONGIteminDatabase(getApplicationContext());
+        boolean runningService = false;
+        ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (MyIntentService.class.getName().equals(service.service.getClassName())) {
+                //your service is running
+                runningService = true;
+            }
+        }
+        if(!runningService){
+
+            DTOProviderSONG.deleteCompletedSongsfromDatabase(getApplicationContext());
+            DTOProviderSONG.updateALLRUNNINGSONGIteminDatabase(getApplicationContext());
+        }
 
     }
 

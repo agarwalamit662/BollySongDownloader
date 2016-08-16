@@ -18,9 +18,6 @@ public class TokenRefreshListenerService extends InstanceIDListenerService {
         SharedPreferences.Editor editor=settings.edit();
         editor.putBoolean("regToken",false);
         editor.commit();
-        Log.e("In TokenRefLis", "In onTokeNReFresh");
-        Log.e("In TokenRefLis","In onTokeNReFresh");
-        Log.e("In TokenRefLis","In onTokeNReFresh");
         Intent i = new Intent(this, RegistrationService.class);
         startService(i);
     }

@@ -105,7 +105,8 @@
                 android:value=".activities.MainActivity" />
         </activity>
 
-        <service android:name=".services.MyIntentService" />
+        <service android:name=".services.MyIntentService"
+            />
         <service android:name=".services.MusicServiceTinyPlayer" />
         <!-- <service android:name=".PodcastEpisodeDownloaderService" /> -->
         <receiver android:name=".services.MusicServiceTinyPlayer$MediaButtonReceiver">
@@ -169,7 +170,9 @@
 
         <provider
             android:name=".data.UserProvider"
-            android:authorities="com.support.android.musicindia.data" />
+            android:authorities="com.support.android.musicindia.data"
+            android:exported="true"
+            android:enabled="true"/>
 
         <receiver
             android:name="com.google.android.gms.gcm.GcmReceiver"

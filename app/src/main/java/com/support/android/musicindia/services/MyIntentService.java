@@ -10,12 +10,14 @@ import com.support.android.musicindia.helper.ConnectionDetector;
 import com.support.android.musicindia.model.Songs;
 
 
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -58,11 +60,12 @@ public class MyIntentService extends CheckIntentService {
 
     public MyIntentService() {
         super("com.support.android.musicindiadownloader.MyIntentService");
-
+        setIntentRedelivery(true);
     }
 
     @Override
     public void onStart(Intent intent, int startId) {
+
         Bundle extras = intent.getExtras();
 
         conDet = new ConnectionDetector(getApplicationContext());
@@ -122,11 +125,11 @@ public class MyIntentService extends CheckIntentService {
         lengthCal = intent.getStringExtra(EXTRA_KEY_LENGTH);
         msgFromActivity = intent.getStringExtra(EXTRA_KEY_IN);
         songName = intent.getStringExtra("songName");
+
         Bundle extras = intent.getExtras();
         songId = extras.getInt("songId");
-        int isrunning = DTOProviderSONG.getIsRunningIteminDatabase(getApplicationContext(),songId);
-        int iscompleted = DTOProviderSONG.getIsCompletedIteminDatabase(getApplicationContext(), songId);
-
+        int isrunning = DTOProviderSONG.getIsRunningIteminDatabase(getBaseContext(),songId);
+        int iscompleted = DTOProviderSONG.getIsCompletedIteminDatabase(getBaseContext(), songId);
         if (songId != 0){
 
         }
@@ -135,7 +138,6 @@ public class MyIntentService extends CheckIntentService {
         int count;
         try {
             if(msgFromActivity != null && songName != null && songId != 0 && isrunning == 1 && iscompleted == 0) {
-
                 int lenghtOfFileCal = 0;
                 URL url2 = null;
                 URL url1 = convertToURLEscapingIllegalCharacters(msgFromActivity);
@@ -159,21 +161,12 @@ public class MyIntentService extends CheckIntentService {
 
                 File file = new File(mydir, songName + ".mp3");
                 if(file.exists()){
+
+                    ContentResolver contentResolver = getApplicationContext().getContentResolver();
+                    contentResolver.delete(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+                            MediaStore.Images.ImageColumns.DATA + " =? " , new String[]{ file.getAbsolutePath() });
+
                     file.delete();
-
-                    Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-                    Intent beforeFourFourIntent = new Intent(Intent.ACTION_MEDIA_MOUNTED);
-                    Uri uri = Uri.fromFile(mydir);
-                    mediaScanIntent.setData(uri);
-                    beforeFourFourIntent.setData(uri);
-
-                    if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-                        sendBroadcast(beforeFourFourIntent);    // only for gingerbread and newer versions
-                    }
-                    else if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
-                    {
-                        sendBroadcast(mediaScanIntent);
-                    }
 
                     file = new File(mydir, songName + ".mp3");
                 }
@@ -199,7 +192,8 @@ public class MyIntentService extends CheckIntentService {
                         intentUpdate.putExtra("songName",songName);
                         int prog = (int) ((total / (float) lenghtOfFile) * 100);
                         intentUpdate.putExtra(EXTRA_KEY_UPDATE, (int) ((total / (float) lenghtOfFile) * 100));
-                        intentUpdate.putExtra("MBDOWNLOADED", resultCOMPMB+"MB / "+resultMB+"MB");
+                        intentUpdate.putExtra("MBDOWNLOADED", resultCOMPMB + "MB / " + resultMB + "MB");
+
                         sendBroadcast(intentUpdate);
 
                         output.write(data, 0, count);
@@ -210,21 +204,12 @@ public class MyIntentService extends CheckIntentService {
                         tempFlag = false;
                         File f = new File(String.valueOf(Environment.getExternalStorageDirectory()+"/MusicIndia/") + songName + ".mp3");
                         if (f.exists()) {
-                            f.delete();
 
-                            Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-                            Intent beforeFourFourIntent = new Intent(Intent.ACTION_MEDIA_MOUNTED);
-                            Uri uri = Uri.fromFile(mydir);
-                            mediaScanIntent.setData(uri);
-                            beforeFourFourIntent.setData(uri);
+                            ContentResolver contentResolver = getApplicationContext().getContentResolver();
+                            contentResolver.delete(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+                                    MediaStore.Images.ImageColumns.DATA + " =? " , new String[]{ file.getAbsolutePath() });
 
-                            if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-                                sendBroadcast(beforeFourFourIntent);    // only for gingerbread and newer versions
-                            }
-                            else if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
-                            {
-                                sendBroadcast(mediaScanIntent);
-                            }
+                            file.delete();
 
                         }
                         Intent intentResponse = new Intent();
@@ -330,20 +315,11 @@ public class MyIntentService extends CheckIntentService {
                         File ff = new File(String.valueOf(Environment.getExternalStorageDirectory()+"/MusicIndia/") + songName + ".mp3");
                         if (ff.exists()) {
 
-                            ff.delete();
-                            Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-                            Intent beforeFourFourIntent = new Intent(Intent.ACTION_MEDIA_MOUNTED);
-                            Uri uri = Uri.fromFile(mydir);
-                            mediaScanIntent.setData(uri);
-                            beforeFourFourIntent.setData(uri);
+                            ContentResolver contentResolver = getApplicationContext().getContentResolver();
+                            contentResolver.delete(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+                                    MediaStore.Images.ImageColumns.DATA + " =? " , new String[]{ ff.getAbsolutePath() });
 
-                            if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-                                sendBroadcast(beforeFourFourIntent);    // only for gingerbread and newer versions
-                            }
-                            else if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
-                            {
-                                sendBroadcast(mediaScanIntent);
-                            }
+                            ff.delete();
                         }
                         Intent intentResponseCheck = new Intent();
                         intentResponseCheck.setAction(ACTION_MyIntentService);
@@ -366,20 +342,12 @@ public class MyIntentService extends CheckIntentService {
                     File f = new File(String.valueOf(Environment.getExternalStorageDirectory()+"/MusicIndia/") + songName + ".mp3");
                     if (f.exists()) {
 
-                        f.delete();
-                        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-                        Intent beforeFourFourIntent = new Intent(Intent.ACTION_MEDIA_MOUNTED);
-                        Uri uri = Uri.fromFile(mydir);
-                        mediaScanIntent.setData(uri);
-                        beforeFourFourIntent.setData(uri);
+                        ContentResolver contentResolver = getApplicationContext().getContentResolver();
+                        contentResolver.delete(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+                                MediaStore.Images.ImageColumns.DATA + " =? " , new String[]{ f.getAbsolutePath() });
 
-                        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-                            sendBroadcast(beforeFourFourIntent);    // only for gingerbread and newer versions
-                        }
-                        else if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
-                        {
-                            sendBroadcast(mediaScanIntent);
-                        }
+                        f.delete();
+
                     }
                     Intent intentResponseCheck = new Intent();
                     intentResponseCheck.setAction(ACTION_MyIntentService);
@@ -393,33 +361,22 @@ public class MyIntentService extends CheckIntentService {
                     // DOWNLOAD COMPLETED FOR THIS FILE DELETE FROM DB
                     DTOProviderSONG.updateSONGIteminDatabase(getApplicationContext(), songId, cv);
 
-
                 }
                 else if(!tempFlag){
                     flag = true;
                 }
             }
         } catch (Exception e) {
-
-
             File f = new File(String.valueOf(Environment.getExternalStorageDirectory()+"/MusicIndia/") + songName + ".mp3");
             if (f.exists()) {
 
-                f.delete();
-                Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-                Intent beforeFourFourIntent = new Intent(Intent.ACTION_MEDIA_MOUNTED);
-                File mydir = new File(String.valueOf(Environment.getExternalStorageDirectory()+"/MusicIndia"));
-                Uri uri = Uri.fromFile(mydir);
-                mediaScanIntent.setData(uri);
-                beforeFourFourIntent.setData(uri);
 
-                if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-                    sendBroadcast(beforeFourFourIntent);    // only for gingerbread and newer versions
-                }
-                else if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
-                {
-                    sendBroadcast(mediaScanIntent);
-                }
+                ContentResolver contentResolver = getApplicationContext().getContentResolver();
+                contentResolver.delete(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+                        MediaStore.Images.ImageColumns.DATA + " =? " , new String[]{ f.getAbsolutePath() });
+
+                f.delete();
+
             }
             Intent intentResponseCheck = new Intent();
             intentResponseCheck.setAction(ACTION_MyIntentService);

@@ -171,10 +171,6 @@ public class SplashScreenActivity extends AppCompatActivity {
             boolean regToken = settings.getBoolean("regToken", false);
             if(!regToken){
 
-                Log.e("PLAYSERVICEHAI","PLAYSERVICEAVAILABLE");
-                Log.e("PLAYSERVICEHAI","PLAYSERVICEAVAILABLE");
-                Log.e("PLAYSERVICEHAI","PLAYSERVICEAVAILABLE");
-                Log.e("PLAYSERVICEHAI","PLAYSERVICEAVAILABLE");
                 Intent i = new Intent(this, RegistrationService.class);
                 startService(i);
 
@@ -182,7 +178,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         }
         else{
 
-            Log.e("PlayStoreNA","Play Sotre Not availble");
+
         }
 
 

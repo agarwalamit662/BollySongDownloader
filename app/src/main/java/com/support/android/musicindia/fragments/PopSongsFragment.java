@@ -5,6 +5,7 @@ package com.support.android.musicindia.fragments;
  */
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +15,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
@@ -589,7 +591,14 @@ public class PopSongsFragment extends Fragment implements SearchView.OnQueryText
                                 Log.d("error", "dir. already exists");
                             File file = new File(String.valueOf(Environment.getExternalStorageDirectory()+"/MusicIndia/") + alreadyInDb + ".mp3");
                             if (file.exists()) {
+
+                                ContentResolver contentResolver = mContext.getContentResolver();
+                                contentResolver.delete(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+                                        MediaStore.Images.ImageColumns.DATA + " =? " , new String[]{ file.getAbsolutePath() });
+
                                 file.delete();
+
+                                /*file.delete();
 
                                 Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
                                 Intent beforeFourFourIntent = new Intent(Intent.ACTION_MEDIA_MOUNTED);
@@ -603,7 +612,7 @@ public class PopSongsFragment extends Fragment implements SearchView.OnQueryText
                                 else if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
                                 {
                                     mContext.sendBroadcast(mediaScanIntent);
-                                }
+                                }*/
 
                                 Intent intentMyIntentService = new Intent(mContext, MyIntentService.class);
                                 intentMyIntentService.putExtra(MyIntentService.EXTRA_KEY_IN, mValues.get(position).getSONGLINK_128KBPS_CONV().toString());

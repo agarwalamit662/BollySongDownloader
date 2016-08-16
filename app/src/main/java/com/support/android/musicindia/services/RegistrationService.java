@@ -23,9 +23,6 @@ public class RegistrationService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
 
-        Log.e("IN REGSERVICE","IN REGSERVICE");
-        Log.e("IN REGSERVICE","IN REGSERVICE");
-        Log.e("IN REGSERVICE","IN REGSERVICE");
         InstanceID myID = InstanceID.getInstance(this);
 
         try {
@@ -36,10 +33,6 @@ public class RegistrationService extends IntentService {
             );
 
 
-
-            Log.e("RegisToken: ",registrationToken);
-            Log.e("RegisToken: ",registrationToken);
-            Log.e("RegisToken: ", registrationToken);
 
             GcmPubSub subscription = GcmPubSub.getInstance(this);
             subscription.subscribe(registrationToken, "/topics/music_india", null);

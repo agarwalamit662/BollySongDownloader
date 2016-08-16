@@ -24,6 +24,7 @@ import android.os.HandlerThread;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
+import android.util.Log;
 
 //import android.annotation.WorkerThread;
 
@@ -100,6 +101,7 @@ public abstract class CheckIntentService extends Service {
      */
     public void setIntentRedelivery(boolean enabled) {
         mRedelivery = enabled;
+
     }
 
     @Override
@@ -122,17 +124,9 @@ public abstract class CheckIntentService extends Service {
         msg.arg1 = startId;
         msg.obj = intent;
         Bundle extras = intent.getExtras();
-        //int latValue = extras.getInt("LatValue");
-        //int longValue = extras.getInt("LongValue");
         if(extras.getInt("songId") != 0) {
             msg.what = extras.getInt("songId");
-            // msg.what = Integer.parseInt(intent.getStringExtra("songId"));
 
-            //Log.e("msg.what ki value hai ", String.valueOf(msg.what));
-            //Log.e("msg.what ki value hai ", String.valueOf(msg.what));
-            //Log.e("songName", intent.getStringExtra("songName"));
-            //Log.e("songName", intent.getStringExtra("songName"));
-            //Log.e("songName", intent.getStringExtra("songName"));
         }
         mServiceHandler.sendMessage(msg);
     }
@@ -158,6 +152,7 @@ public abstract class CheckIntentService extends Service {
     @Override
     public void onDestroy() {
         mServiceLooper.quit();
+
     }
 
     /**
