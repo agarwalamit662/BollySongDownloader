@@ -21,10 +21,8 @@ This app uses some of the important features in the Design library:
   - SnackBar
   - Toolbars
   
-![alt text](https://lh3.googleusercontent.com/40vpss6LKnPbcVW9bU3Ut7Dck78D17b1EgoH9T9DEmfj3P8lawNAOoYjzL1lNFOWsL0-=h310-rw)
 
 ![screenshot_20161217-175502](https://cloud.githubusercontent.com/assets/6779216/21286846/3f9fe0ea-c485-11e6-8640-a9ad20750b3a.png)
-
 ![screenshot_20161217-175502](https://cloud.githubusercontent.com/assets/6779216/21286881/057cb9b4-c486-11e6-80cd-fe4f28216425.png)
 ![screenshot_20161217-175522](https://cloud.githubusercontent.com/assets/6779216/21286882/0587d88a-c486-11e6-93cf-2b7afc055681.png)
 ![screenshot_20161217-175540](https://cloud.githubusercontent.com/assets/6779216/21286883/0597691c-c486-11e6-80d9-5cb627a8b004.png)
