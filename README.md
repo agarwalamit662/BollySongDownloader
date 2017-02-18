@@ -45,3 +45,15 @@ This app uses some of the important features in the Design library:
 ![screenshot_20161217-175921](https://cloud.githubusercontent.com/assets/6779216/21286900/0706937c-c486-11e6-8547-1a4a01ccc4c0.png)
 
 
+Technologies Used:
+
+--> Amazon EC2 for Server Side Coding
+--> Goolge Messaging Services for Notifications
+--> Eclipse 
+--> Android Studio
+--> Material Design
+--> Github
+--> Quartz For Schedulers
+--> Putty 
+--> FileZilla
+--> JSoup Library for Web Page Scrapping
