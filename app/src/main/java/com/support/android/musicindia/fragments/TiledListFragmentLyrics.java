@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.support.android.musicindia.Constants.Constants;
 import com.support.android.musicindia.activities.MovieDetailActivity;
 import com.support.android.musicindia.adapters.RecyclerViewAdapter;
 import com.support.android.musicindia.helper.ConnectionDetector;
@@ -59,7 +60,7 @@ public class TiledListFragmentLyrics extends Fragment {
     private static int posSpinnerTwo = -1;
     private static final int DOWNLOAD_THREAD_POOL_SIZE = 4;
     List<String> listSongs = new ArrayList<String>();
-    public static String latestpunjabi = "http://ec2-52-36-80-134.us-west-2.compute.amazonaws.com:8080/useraccount/rest/songs/latestmovielyrics";
+    public static String latestpunjabi = Constants.BASE_URL+"rest/songs/latestmovielyrics";
     final String[] alphabets = {"Latest","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
     public static String deloitteURL = "usmumamitagarw1:8080";
     public static String emulatorURL = "10.0.2.2:8080";

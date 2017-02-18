@@ -26,6 +26,7 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.support.android.musicindia.Constants.Constants;
 import com.support.android.musicindia.helper.ConnectionDetector;
 import com.support.android.musicindia.R;
 import com.support.android.musicindia.activities.MovieDetailActivity;
@@ -65,7 +66,7 @@ public class TiledListFragment extends Fragment {
     public static String deloitteURL = "usmumamitagarw1:8080";
     public static String emulatorURL = "10.0.2.2:8080";
     public static String driveURL = "https://7db034b7a5c1141914d840db300fd46be9227dd3.googledrive.com/host/0B_KqRgJQ-c2MM3pMb3kyRXNZeGs/";
-    public static String latestbollywood = "http://ec2-52-36-80-134.us-west-2.compute.amazonaws.com:8080/useraccount/rest/songs/latestbollywood";
+    public static String latestbollywood = Constants.BASE_URL+"rest/songs/latestbollywood";
     final String[] alphabets = {"Latest","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
     final String[] str1={"Latest Movies Songs","A MOVIE SONGS","B MOVIE SONGS","C MOVIE SONGS","D MOVIE SONGS","E MOVIE SONGS","F MOVIE SONGS","G MOVIE SONGS","H MOVIE SONGS","I MOVIE SONGS","J MOVIE SONGS"
             ,"K MOVIE SONGS","L MOVIE SONGS","M MOVIE SONGS","N MOVIE SONGS","O MOVIE SONGS","P MOVIE SONGS","Q MOVIE SONGS","R MOVIE SONGS","S MOVIE SONGS","T MOVIE SONGS","U MOVIE SONGS","V MOVIE SONGS","W MOVIE SONGS","X MOVIE SONGS","Y MOVIE SONGS","Z MOVIE SONGS"};
@@ -283,7 +284,7 @@ public class TiledListFragment extends Fragment {
                     if (conDet.isConnectingToInternet()) {
 
                         if (SongsFilesData.myMap.get(name) == null) {
-                            String tempurl = "http://ec2-52-36-80-134.us-west-2.compute.amazonaws.com:8080/useraccount/rest/songs/bollywoodcharwiseyear?schar=" + alphabets[posSpinnerOne] + "&year=" + years[posSpinnerTwo];
+                            String tempurl = Constants.BASE_URL+"rest/songs/bollywoodcharwiseyear?schar=" + alphabets[posSpinnerOne] + "&year=" + years[posSpinnerTwo];
                             (new AsyncListViewLoaderTiled()).execute(tempurl, name);
 
                         } else {
@@ -382,7 +383,7 @@ public class TiledListFragment extends Fragment {
                     String name = "songs" + String.valueOf(posSpinnerOne) + String.valueOf(posSpinnerTwo);
                     if (conDet.isConnectingToInternet()) {
                         if (SongsFilesData.myMap.get(name) == null) {
-                            String tempurl = "http://ec2-52-36-80-134.us-west-2.compute.amazonaws.com:8080/useraccount/rest/songs/bollywoodcharwiseyear?schar=" + alphabets[posSpinnerOne] + "&year=" + years[posSpinnerTwo];
+                            String tempurl = Constants.BASE_URL+"rest/songs/bollywoodcharwiseyear?schar=" + alphabets[posSpinnerOne] + "&year=" + years[posSpinnerTwo];
                             (new AsyncListViewLoaderTiled()).execute(tempurl, name);
                         } else {
                             onRefresh = SongsFilesData.myMap.get(name);
@@ -444,7 +445,7 @@ public class TiledListFragment extends Fragment {
                     if (conDet.isConnectingToInternet()) {
                         if (SongsFilesData.myMap.get(name) == null) {
 
-                            String tempurl = "http://ec2-52-36-80-134.us-west-2.compute.amazonaws.com:8080/useraccount/rest/songs/bollywoodcharwiseyear?schar=" + alphabets[posSpinnerOne] + "&year=" + years[posSpinnerTwo];
+                            String tempurl = Constants.BASE_URL+"rest/songs/bollywoodcharwiseyear?schar=" + alphabets[posSpinnerOne] + "&year=" + years[posSpinnerTwo];
                             (new AsyncListViewLoaderTiled()).execute(tempurl, name);
 
                         } else {
@@ -540,7 +541,7 @@ public class TiledListFragment extends Fragment {
                     String name = "songs" + String.valueOf(posSpinnerOne) + String.valueOf(posSpinnerTwo);
                     if (conDet.isConnectingToInternet()) {
                         if (SongsFilesData.myMap.get(name) == null) {
-                            String tempurl = "http://ec2-52-36-80-134.us-west-2.compute.amazonaws.com:8080/useraccount/rest/songs/bollywoodcharwiseyear?schar=" + alphabets[posSpinnerOne] + "&year=" + years[posSpinnerTwo];
+                            String tempurl = Constants.BASE_URL+"rest/songs/bollywoodcharwiseyear?schar=" + alphabets[posSpinnerOne] + "&year=" + years[posSpinnerTwo];
                             (new AsyncListViewLoaderTiled()).execute(tempurl, name);
                         } else {
                             onRefresh = SongsFilesData.myMap.get(name);

@@ -29,6 +29,7 @@ import com.bumptech.glide.Glide;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.support.android.musicindia.Constants.Constants;
 import com.support.android.musicindia.helper.ConnectionDetector;
 import com.support.android.musicindia.helper.DividerItemDecoration;
 import com.support.android.musicindia.R;
@@ -66,7 +67,7 @@ public class SearchSongLyricsActivity extends BaseActivity {
     private CardView cardView;
     public String urltosend;
     public static List<SongsLyrics> onRefresh;
-    public static String staticUrl = "http://ec2-52-36-80-134.us-west-2.compute.amazonaws.com:8080/useraccount/rest/songs/bollywoodsearchsonglyrics?sname=";
+    public static String staticUrl = Constants.BASE_URL+"rest/songs/bollywoodsearchsonglyrics?sname=";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +83,7 @@ public class SearchSongLyricsActivity extends BaseActivity {
         rv = (RecyclerView) findViewById(R.id.recycler_view_movie_songs);
         rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
         rv.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+        rv.setNestedScrollingEnabled(false);
         cardView.setVisibility(View.GONE);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -189,6 +191,7 @@ public class SearchSongLyricsActivity extends BaseActivity {
                     rv.setAdapter(new RecylerViewAdapterSearchLyrics(getApplicationContext(), null));
                     rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
                     rv.addItemDecoration(new DividerItemDecoration(getApplicationContext(), LinearLayoutManager.VERTICAL));
+                    rv.setNestedScrollingEnabled(false);
                     cardView.setVisibility(View.GONE);
                 }
                 else if(result != null && result.size() == 0){
@@ -200,6 +203,7 @@ public class SearchSongLyricsActivity extends BaseActivity {
                     rv.setAdapter(new RecylerViewAdapterSearchLyrics(getApplicationContext(), null));
                     rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
                     rv.addItemDecoration(new DividerItemDecoration(getApplicationContext(), LinearLayoutManager.VERTICAL));
+                    rv.setNestedScrollingEnabled(false);
                     cardView.setVisibility(View.GONE);
                 }
                 else if (result != null && result.size() > 0 ) {
@@ -209,6 +213,7 @@ public class SearchSongLyricsActivity extends BaseActivity {
                     rv.setAdapter(new RecylerViewAdapterSearchLyrics(getApplicationContext(), onRefresh));
                     rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
                     rv.addItemDecoration(new DividerItemDecoration(getApplicationContext(), LinearLayoutManager.VERTICAL));
+                    rv.setNestedScrollingEnabled(false);
 
                 }
             }

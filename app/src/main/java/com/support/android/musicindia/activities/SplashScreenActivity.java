@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
+import com.support.android.musicindia.Constants.Constants;
 import com.support.android.musicindia.helper.ConnectionDetector;
 import com.support.android.musicindia.application.MusicPlayerApplication;
 import com.support.android.musicindia.fragments.PopSongsFragment;
@@ -305,7 +306,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             listName = params[1];
             URL u;
             try {
-                String punjabiUrl = "http://ec2-52-36-80-134.us-west-2.compute.amazonaws.com:8080/useraccount/rest/songs/latestpunjabi";
+                String punjabiUrl = Constants.BASE_URL+"rest/songs/latestpunjabi";
                 u  = new URL(punjabiUrl);
                 HttpURLConnection urlConnection = (HttpURLConnection) u.openConnection();
                 urlConnection.setConnectTimeout(3000);
@@ -461,7 +462,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
             URL uBolly;
             try {
-                String latestbollywood = "http://ec2-52-36-80-134.us-west-2.compute.amazonaws.com:8080/useraccount/rest/songs/latestbollywood";
+                String latestbollywood = Constants.BASE_URL+"rest/songs/latestbollywood";
                 uBolly  = new URL(latestbollywood);
                 HttpURLConnection urlConnection = (HttpURLConnection) uBolly.openConnection();
                 urlConnection.setConnectTimeout(3000);
@@ -622,7 +623,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
             URL uPop;
             try {
-                String popUrl = "http://ec2-52-36-80-134.us-west-2.compute.amazonaws.com:8080/useraccount/rest/songs/latestindi";
+                String popUrl = Constants.BASE_URL+"rest/songs/latestindi";
                 uPop = new URL(popUrl);
                 HttpURLConnection urlConnection = (HttpURLConnection) uPop.openConnection();
                 urlConnection.setConnectTimeout(3000);
@@ -722,7 +723,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
             URL uBollyLyrics;
             try {
-                String latestbollywoodlyrics = "http://ec2-52-36-80-134.us-west-2.compute.amazonaws.com:8080/useraccount/rest/songs/latestmovielyrics";
+                String latestbollywoodlyrics = Constants.BASE_URL+"rest/songs/latestmovielyrics";
                 uBollyLyrics  = new URL(latestbollywoodlyrics);
                 HttpURLConnection urlConnectionLyrics = (HttpURLConnection) uBollyLyrics.openConnection();
                 urlConnectionLyrics.setConnectTimeout(3000);
@@ -862,7 +863,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
             URL u;
             try {
-                String regURL = "http://ec2-52-36-80-134.us-west-2.compute.amazonaws.com:8080/useraccount/rest/songs/device?did=";
+                String regURL = Constants.BASE_URL+"rest/songs/device?did=";
                 regURL = regURL+params[0];
                 u  = new URL(regURL);
                 HttpURLConnection urlConnection = (HttpURLConnection) u.openConnection();
@@ -943,7 +944,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         protected Void doInBackground(String... params) {
             URL u;
             try {
-                String punjabiUrl = "http://ec2-52-36-80-134.us-west-2.compute.amazonaws.com:8080/useraccount/rest/songs/sharelink";
+                String punjabiUrl = Constants.BASE_URL+"rest/songs/sharelink";
 
                 u  = new URL(punjabiUrl);
                 HttpURLConnection urlConnection = (HttpURLConnection) u.openConnection();
@@ -1020,7 +1021,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         protected Void doInBackground(String... params) {
             URL u;
             try {
-                String punjabiUrl = "http://ec2-52-36-80-134.us-west-2.compute.amazonaws.com:8080/useraccount/rest/songs/updatelink";
+                String punjabiUrl = Constants.BASE_URL+"rest/songs/updatelink";
                 u  = new URL(punjabiUrl);
                 HttpURLConnection urlConnection = (HttpURLConnection) u.openConnection();
                 urlConnection.setConnectTimeout(3000);

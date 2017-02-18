@@ -15,8 +15,8 @@
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.support.android.musicindia"
-    android:versionCode="10"
-    android:versionName="2.0.8">
+    android:versionCode="12"
+    android:versionName="2.0.10">
 
     <uses-permission android:name="com.android.vending.CHECK_LICENSE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -29,10 +29,10 @@
 
     <!-- This avoid other apps to register and receive messages from server. -->
     <permission
-        android:name="com.feelzdroid.gcmexample.permission.C2D_MESSAGE"
+        android:name="com.support.android.musicindia.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="com.feelzdroid.gcmexample.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.support.android.musicindia.permission.C2D_MESSAGE" />
 
     <!--
     For GcmReceiver service handles message sent from GCM server, this permission is

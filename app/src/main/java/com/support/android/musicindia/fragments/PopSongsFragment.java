@@ -42,6 +42,7 @@ import android.widget.Toast;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.support.android.musicindia.Constants.Constants;
 import com.support.android.musicindia.data.UserProvider;
 import com.support.android.musicindia.dto.DTOProviderSONG;
 import com.support.android.musicindia.helper.BrowserSong;
@@ -87,7 +88,7 @@ public class PopSongsFragment extends Fragment implements SearchView.OnQueryText
     private RecyclerView rv;
     static MainActivity ma;
     public static List<SongsIndiPop> onRefresh;
-    public static String driveURL = "http://ec2-52-36-80-134.us-west-2.compute.amazonaws.com:8080/useraccount/rest/songs/latestindi";
+    public static String driveURL = Constants.BASE_URL+"rest/songs/latestindi";
     private int cancelId;
 
     @Nullable

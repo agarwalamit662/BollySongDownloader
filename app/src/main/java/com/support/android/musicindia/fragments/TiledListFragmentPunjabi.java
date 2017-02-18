@@ -28,6 +28,7 @@ import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.support.android.musicindia.Constants.Constants;
 import com.support.android.musicindia.helper.ConnectionDetector;
 import com.support.android.musicindia.R;
 import com.support.android.musicindia.activities.MovieDetailActivity;
@@ -59,7 +60,7 @@ public class TiledListFragmentPunjabi extends Fragment {
     public static int posSpinnerTwo = -1;
     private static final int DOWNLOAD_THREAD_POOL_SIZE = 4;
     List<String> listSongs = new ArrayList<String>();
-    public static String latestpunjabi = "http://ec2-52-36-80-134.us-west-2.compute.amazonaws.com:8080/useraccount/rest/songs/latestpunjabi";
+    public static String latestpunjabi = Constants.BASE_URL+"rest/songs/latestpunjabi";
     final String[] alphabets = {"Latest","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
     public static String deloitteURL = "usmumamitagarw1:8080";
     public static String emulatorURL = "10.0.2.2:8080";
@@ -227,7 +228,7 @@ public class TiledListFragmentPunjabi extends Fragment {
 
                         if(SongsFilesData.myMap.get(name) == null) {
 
-                            String temp = "http://ec2-52-36-80-134.us-west-2.compute.amazonaws.com:8080/useraccount/rest/songs/punjabistartchar?schar="+alphabets[posSpinnerOne];
+                            String temp = Constants.BASE_URL+"rest/songs/punjabistartchar?schar="+alphabets[posSpinnerOne];
                             (new AsyncListViewLoaderTiledPunjabi()).execute(temp,name);
                         }
                         else {
@@ -318,7 +319,7 @@ public class TiledListFragmentPunjabi extends Fragment {
                     String name = "punjabi"+String.valueOf(posSpinnerOne);
                     if (conDet.isConnectingToInternet()){
                         if(SongsFilesData.myMap.get(name) == null) {
-                            String temp = "http://ec2-52-36-80-134.us-west-2.compute.amazonaws.com:8080/useraccount/rest/songs/punjabistartchar?schar="+alphabets[posSpinnerOne];
+                            String temp = Constants.BASE_URL+"rest/songs/punjabistartchar?schar="+alphabets[posSpinnerOne];
                             (new AsyncListViewLoaderTiledPunjabi()).execute(temp,name);
 
                         }

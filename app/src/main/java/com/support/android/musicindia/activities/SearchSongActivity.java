@@ -1,6 +1,8 @@
 package com.support.android.musicindia.activities;
 
 import android.app.ProgressDialog;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -9,6 +11,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.ListPopupWindow;
@@ -31,10 +34,14 @@ import com.bumptech.glide.Glide;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.support.android.musicindia.Constants.Constants;
+import com.support.android.musicindia.data.UserProvider;
+import com.support.android.musicindia.dto.DTOProviderSONG;
 import com.support.android.musicindia.helper.ConnectionDetector;
 import com.support.android.musicindia.helper.DividerItemDecoration;
 import com.support.android.musicindia.R;
 import com.support.android.musicindia.model.Movie;
+import com.support.android.musicindia.model.SONG;
 import com.support.android.musicindia.model.Songs;
 import com.support.android.musicindia.model.SongsIndiPop;
 import com.support.android.musicindia.services.MyIntentService;
@@ -70,9 +77,9 @@ public class SearchSongActivity extends BaseActivity {
     private CardView cardView;
     public String urltosend;
     public static List<SongsIndiPop> onRefresh;
-    public static String driveURL = "http://ec2-52-36-80-134.us-west-2.compute.amazonaws.com:8080/useraccount/rest/songs/latestindi";
-    public static String bollywood = "http://ec2-52-36-80-134.us-west-2.compute.amazonaws.com:8080/useraccount/rest/songs/bollywoodsearchsong?sname=";
-    public static String punjabi = "http://ec2-52-36-80-134.us-west-2.compute.amazonaws.com:8080/useraccount/rest/songs/punjabisearchsong?sname=";
+    public static String driveURL = Constants.BASE_URL+"rest/songs/latestindi";
+    public static String bollywood = Constants.BASE_URL+"rest/songs/bollywoodsearchsong?sname=";
+    public static String punjabi = Constants.BASE_URL+"rest/songs/punjabisearchsong?sname=";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,6 +103,7 @@ public class SearchSongActivity extends BaseActivity {
         rv = (RecyclerView) findViewById(R.id.recycler_view_movie_songs);
         rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
         rv.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+        rv.setNestedScrollingEnabled(false);
         cardView.setVisibility(View.GONE);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -203,6 +211,7 @@ public class SearchSongActivity extends BaseActivity {
                     rv.setAdapter(new RecyclerViewSearchSong(getApplicationContext(), null));
                     rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
                     rv.addItemDecoration(new DividerItemDecoration(getApplicationContext(), LinearLayoutManager.VERTICAL));
+                    rv.setNestedScrollingEnabled(false);
                     cardView.setVisibility(View.GONE);
                 }
                 else if(result != null && result.size() == 0){
@@ -214,6 +223,7 @@ public class SearchSongActivity extends BaseActivity {
                     rv.setAdapter(new RecyclerViewSearchSong(getApplicationContext(), null));
                     rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
                     rv.addItemDecoration(new DividerItemDecoration(getApplicationContext(), LinearLayoutManager.VERTICAL));
+                    rv.setNestedScrollingEnabled(false);
                     cardView.setVisibility(View.GONE);
                 }
                 else if (result != null && result.size() > 0 ) {
@@ -223,6 +233,7 @@ public class SearchSongActivity extends BaseActivity {
                     rv.setAdapter(new RecyclerViewSearchSong(getApplicationContext(), onRefresh));
                     rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
                     rv.addItemDecoration(new DividerItemDecoration(getApplicationContext(), LinearLayoutManager.VERTICAL));
+                    rv.setNestedScrollingEnabled(false);
 
                 }
             }
@@ -441,8 +452,6 @@ public class SearchSongActivity extends BaseActivity {
 
             Drawable d = mContext.getResources().getDrawable(R.drawable.ic_download_test);
             holds.mPlayIcon.setImageDrawable(d);
-            /*if(!mValues.get(position).getMovie().getURLS().toString().equals("NA"))
-                Glide.with(mContext).load(mValues.get(position).getMovie().getURLS().toString()).into(holds.mPopImage);*/
 
             imageLoader.displayImage("", holds.mPopImage); //clears previous one
 
@@ -456,9 +465,52 @@ public class SearchSongActivity extends BaseActivity {
 
                     File f = new File(String.valueOf(Environment.getExternalStorageDirectory()+"/MusicIndia/") + mValues.get(position).getSONGNAME().toString() + ".mp3");
                     if(f.exists()){
-                        Toast.makeText(mContext, "Song already in Downloads", Toast.LENGTH_SHORT).show();
+
+
+                        String alreadyInDb = mValues.get(position).getSONGNAME().toString();
+                        int sid = mValues.get(position).getSONG_ID();
+
+                        ArrayList<SONG> isExits = DTOProviderSONG.getSONGIteminDatabase(mContext, sid, alreadyInDb);
+                        if(isExits != null && isExits.size() > 0){
+
+                            File mydir = new File(String.valueOf(Environment.getExternalStorageDirectory()+"/MusicIndia"));
+                            if(!mydir.exists())
+                                mydir.mkdirs();
+                            else
+                                Log.d("error", "dir. already exists");
+                            File file = new File(String.valueOf(Environment.getExternalStorageDirectory()+"/MusicIndia/") + alreadyInDb + ".mp3");
+                            if (file.exists()) {
+                                ContentResolver contentResolver = mContext.getContentResolver();
+                                contentResolver.delete(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+                                        MediaStore.Images.ImageColumns.DATA + " =? " , new String[]{ file.getAbsolutePath() });
+
+                                file.delete();
+
+                                Intent intentMyIntentService = new Intent(mContext, MyIntentService.class);
+                                intentMyIntentService.putExtra(MyIntentService.EXTRA_KEY_IN, mValues.get(position).getSONGLINK_128KBPS_CONV().toString());
+                                intentMyIntentService.putExtra("songName", mValues.get(position).getSONGNAME().toString());
+                                intentMyIntentService.putExtra("songId", (int) mValues.get(position).getSONG_ID());
+                                intentMyIntentService.putExtra("songIncompleteId", (int) mValues.get(position).getSONG_ID());
+                                intentMyIntentService.putExtra(MyIntentService.EXTRA_KEY_LENGTH, mValues.get(position).getSONGLINK_128KBPS().toString());
+                                mContext.startService(intentMyIntentService);
+
+                            }
+                        }
+                        else{
+
+                            Toast.makeText(mContext,"Song Already in Downloads",Toast.LENGTH_SHORT).show();
+                        }
+
                     }
                     else {
+
+                        String alreadyInDb = mValues.get(position).getSONGNAME().toString();
+                        int sid = mValues.get(position).getSONG_ID();
+
+                        ArrayList<SONG> isExits = DTOProviderSONG.getNewSONGIteminDatabase(mContext, sid, alreadyInDb);
+                        if(isExits != null && isExits.size() > 0){
+                            DTOProviderSONG.deleteSONGfromDatabase(mContext, sid, alreadyInDb);
+                        }
 
                         Intent intentMyIntentService = new Intent(mContext, MyIntentService.class);
                         intentMyIntentService.putExtra(MyIntentService.EXTRA_KEY_IN, mValues.get(position).getSONGLINK_128KBPS_CONV().toString());
@@ -467,7 +519,14 @@ public class SearchSongActivity extends BaseActivity {
                         intentMyIntentService.putExtra(MyIntentService.EXTRA_KEY_LENGTH, mValues.get(position).getSONGLINK_128KBPS().toString());
                         mContext.startService(intentMyIntentService);
                         Toast.makeText(mContext, "Song added to Downloads", Toast.LENGTH_SHORT).show();
+
+                        SONG songObj = new SONG(mValues.get(position).getSONG_ID(),mValues.get(position).getSONGNAME(),mValues.get(position).getSONGLINK_128KBPS_CONV(),0,1);
+                        ContentValues cv = getContentValues(songObj);
+                        DTOProviderSONG.insertSONGIteminDatabase(mContext, cv);
+
                     }
+
+
                 }
             });
 
@@ -479,6 +538,17 @@ public class SearchSongActivity extends BaseActivity {
             String number = matcher.replaceAll("");
             number = number.replaceAll("-","");
             return number;
+        }
+
+        public ContentValues getContentValues(SONG songObj){
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(UserProvider._SONGID,songObj.getSongId());
+            contentValues.put(UserProvider._SONG_URL,songObj.getSongUrl());
+            contentValues.put(UserProvider._SONG_NAME,songObj.getSongName());
+            contentValues.put(UserProvider._SONG_DWNLD_COMPLETED,songObj.getCompleted());
+            contentValues.put(UserProvider._SONG_DWNLD_RUNNING,songObj.getRunning());
+            return contentValues;
         }
 
         @Override

@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.support.android.musicindia.Constants.Constants;
 import com.support.android.musicindia.helper.ConnectionDetector;
 import com.support.android.musicindia.R;
 
@@ -193,7 +194,7 @@ public class AboutMeActitvity extends BaseActivity {
 
             URL u;
             try {
-                String punjabiUrl = "http://ec2-52-36-80-134.us-west-2.compute.amazonaws.com:8080/useraccount/rest/songs/totalinstalls";
+                String punjabiUrl = Constants.BASE_URL+"rest/songs/totalinstalls";
                 u  = new URL(punjabiUrl);
                 HttpURLConnection urlConnection = (HttpURLConnection) u.openConnection();
                 urlConnection.setConnectTimeout(3000);
