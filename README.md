@@ -7,7 +7,7 @@ An Android Application to Download and Listen Indian Music, Get Indian Songs Lyr
 
 Google Drive Link with the Download Song feature:
 
-https://drive.google.com/open?id=0B_KqRgJQ-c2MLVRvQi1WUEo0RUE
+https://drive.google.com/file/d/0B_KqRgJQ-c2MVEJORG1TdVV2R0k/view?usp=sharing
 
 Play Store Link for the App (Limited Features):
 
